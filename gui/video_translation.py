@@ -5,10 +5,10 @@ Upload and translate sign language videos.
 import tkinter as tk
 from tkinter import ttk, filedialog, font
 import cv2
-from PIL import Image, ImageTk
 import threading
 import time
 import os
+from PIL import Image, ImageTk
 
 class VideoTranslationFrame(tk.Frame):
     def __init__(self, parent, controller, *args, **kwargs):

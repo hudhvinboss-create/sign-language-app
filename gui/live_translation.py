@@ -5,9 +5,9 @@ Real-time sign language detection from webcam.
 import tkinter as tk
 from tkinter import ttk, font
 import cv2
-from PIL import Image, ImageTk
 import threading
 import time
+from PIL import Image, ImageTk
 
 class LiveTranslationFrame(tk.Frame):
     def __init__(self, parent, controller, *args, **kwargs):

@@ -125,11 +125,40 @@ class TextToSignFrame(tk.Frame):
         if not text:
             return
 
-        words = text.upper().replace(",", " ").replace(".", " ").replace("?", " ").split()
+        normalized = text.upper().replace(",", " ").replace(".", " ").replace("?", " ").replace("!", " ").strip()
+        words = normalized.split()
         self.current_signs = []
 
+        # Recognize common multi-word phrases before falling back to individual words.
+        phrase_map = {
+            "HOW ARE YOU": "HOW-ARE-YOU",
+            "THANK YOU": "THANK-YOU",
+            "GOOD MORNING": "GOOD-MORNING",
+            "GOOD NIGHT": "GOOD-NIGHT",
+            "NICE TO MEET YOU": "NICE-TO-MEET-YOU",
+            "SEE YOU LATER": "SEE-YOU-LATER",
+            "WHAT IS YOUR NAME": "WHAT-IS-YOUR-NAME",
+            "MY NAME IS": "MY-NAME-IS",
+            "I NEED HELP": "I-NEED-HELP",
+            "I DONT UNDERSTAND": "I-DONT-UNDERSTAND",
+            "PLEASE HELP ME": "PLEASE-HELP-ME",
+            "WHERE IS BATHROOM": "WHERE-IS-BATHROOM",
+        }
         db = self.controller.db
-        for word in words:
+        i=0
+        while i < len(words):
+            matched=None
+            for phrase in sorted(phrase_map, key=lambda x: len(x.split()), reverse=True):
+                parts=phrase.split()
+                if words[i:i+len(parts)] == parts:
+                    matched=phrase_map[phrase]; break
+            if matched:
+                sign = db.get_sign_by_word(matched, self.controller.language)
+                if sign: self.current_signs.append(sign)
+                else:
+                    self.current_signs.append((None, matched, self.controller.language, "Common phrase", f"Phrase reference: {matched.replace('-', ' ').title()}", "See phrase asset", "Follow the sign sequence", f"Common phrase: {matched.replace('-', ' ').title()}", "", None, 0.6))
+                i += len(phrase.split()); continue
+            word=words[i]
             sign = db.get_sign_by_word(word, self.controller.language)
             if sign:
                 self.current_signs.append(sign)

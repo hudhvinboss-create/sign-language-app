@@ -17,6 +17,8 @@ from gui.text_to_sign import TextToSignFrame
 from gui.dictionary import DictionaryFrame
 from gui.history import HistoryFrame
 from gui.resources import ResourcesFrame
+from gui.about import AboutFrame
+from gui.stats import StatsFrame
 
 class SignLanguageApp(tk.Tk):
     def __init__(self):
@@ -45,6 +47,8 @@ class SignLanguageApp(tk.Tk):
             "Dictionary": DictionaryFrame,
             "History": HistoryFrame,
             "Resources": ResourcesFrame,
+            "About": AboutFrame,
+            "Stats": StatsFrame,
         }
 
         for name, F in frame_classes.items():

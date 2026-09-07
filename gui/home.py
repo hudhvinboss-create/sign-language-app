@@ -44,6 +44,8 @@ class HomeFrame(tk.Frame):
             ("📖 Sign Dictionary", "#16213e", self._go_dict),
             ("📚 Free Resources", "#1a4d2e", self._go_resources),
             ("📜 History", "#1a1a2e", self._go_history),
+            ("📊 Vocabulary Stats", "#24445c", self._go_stats),
+            ("ℹ️ About & Learning", "#3d315c", self._go_about),
         ]
 
         for text, color, command in buttons:
@@ -75,3 +77,9 @@ class HomeFrame(tk.Frame):
 
     def _go_history(self):
         self.controller.show_frame("History")
+
+    def _go_stats(self):
+        self.controller.show_frame("Stats")
+
+    def _go_about(self):
+        self.controller.show_frame("About")

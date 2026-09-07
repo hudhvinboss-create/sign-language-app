@@ -1,0 +1,3179 @@
+{
+  "signs": [
+    {
+      "id": 1,
+      "word": "HELLO",
+      "language": "ASL",
+      "category": "Greetings",
+      "tags": [
+        "asl",
+        "goodbye",
+        "greetings",
+        "hello",
+        "hi",
+        "morning"
+      ],
+      "meaning": "A greeting used when meeting someone.",
+      "hand_position": "Hand open, fingers spread, thumb extended. Hand at side of forehead.",
+      "movement": "Move hand outward from forehead in a small arc, like a salute.",
+      "example_sentence": "Hello, nice to meet you!",
+      "related_signs": [
+        "HI",
+        "GOODBYE",
+        "MORNING"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/hello.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 2,
+      "word": "HI",
+      "language": "ASL",
+      "category": "Greetings",
+      "tags": [
+        "asl",
+        "greetings",
+        "hello",
+        "hey",
+        "hi",
+        "what's-up"
+      ],
+      "meaning": "An informal greeting.",
+      "hand_position": "Hand open, palm facing outward.",
+      "movement": "Small upward movement of the hand.",
+      "example_sentence": "Hi, how are you?",
+      "related_signs": [
+        "HELLO",
+        "HEY",
+        "WHAT'S-UP"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/hi.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 3,
+      "word": "GOODBYE",
+      "language": "ASL",
+      "category": "Greetings",
+      "tags": [
+        "asl",
+        "bye",
+        "goodbye",
+        "greetings",
+        "hello",
+        "see-you"
+      ],
+      "meaning": "Used when parting from someone.",
+      "hand_position": "Hand open, palm facing outward.",
+      "movement": "Move hand side to side like waving.",
+      "example_sentence": "Goodbye, see you tomorrow!",
+      "related_signs": [
+        "HELLO",
+        "SEE-YOU",
+        "BYE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/goodbye.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 4,
+      "word": "GOOD-MORNING",
+      "language": "ASL",
+      "category": "Greetings",
+      "tags": [
+        "asl",
+        "good",
+        "greetings",
+        "hello",
+        "morning"
+      ],
+      "meaning": "Wishing someone well at the start of the day.",
+      "hand_position": "Flat hand at chin, then arc down to stomach.",
+      "movement": "Move hand from chin downward in an arc.",
+      "example_sentence": "Good morning! Did you sleep well?",
+      "related_signs": [
+        "HELLO",
+        "MORNING"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/good_morning.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 5,
+      "word": "GOOD-NIGHT",
+      "language": "ASL",
+      "category": "Greetings",
+      "tags": [
+        "asl",
+        "good",
+        "goodbye",
+        "greetings",
+        "night",
+        "sleep"
+      ],
+      "meaning": "Wishing someone well before sleep.",
+      "hand_position": "Flat hand at chin, then move to bent hand at forehead.",
+      "movement": "Chin to forehead, closing fingers like going to sleep.",
+      "example_sentence": "Good night, sweet dreams!",
+      "related_signs": [
+        "GOODBYE",
+        "SLEEP"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/good_night.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 6,
+      "word": "THANK-YOU",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "asl",
+        "common",
+        "grateful",
+        "phrases",
+        "thank",
+        "thanks",
+        "welcome",
+        "you"
+      ],
+      "meaning": "Expression of gratitude.",
+      "hand_position": "Flat hand touching chin, fingers pointing forward.",
+      "movement": "Move hand forward and slightly downward from chin.",
+      "example_sentence": "Thank you for your help.",
+      "related_signs": [
+        "THANKS",
+        "WELCOME",
+        "GRATEFUL"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/thank_you.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 7,
+      "word": "PLEASE",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "asl",
+        "common",
+        "excuse-me",
+        "phrases",
+        "please",
+        "sorry",
+        "thank-you"
+      ],
+      "meaning": "Polite request.",
+      "hand_position": "Flat hand on chest, moving in circular motion.",
+      "movement": "Rub chest in circular motion with flat hand.",
+      "example_sentence": "Please pass the salt.",
+      "related_signs": [
+        "THANK-YOU",
+        "SORRY",
+        "EXCUSE-ME"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/please.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 8,
+      "word": "SORRY",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "apologize",
+        "asl",
+        "common",
+        "forgive",
+        "phrases",
+        "please",
+        "sorry"
+      ],
+      "meaning": "Apology expression.",
+      "hand_position": "Fist hand, rub in circular motion on chest.",
+      "movement": "Circular rubbing motion on chest with fist.",
+      "example_sentence": "I am sorry for being late.",
+      "related_signs": [
+        "PLEASE",
+        "APOLOGIZE",
+        "FORGIVE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/sorry.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 9,
+      "word": "EXCUSE-ME",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "asl",
+        "common",
+        "excuse",
+        "me",
+        "phrases",
+        "please",
+        "sorry"
+      ],
+      "meaning": "Polite way to get attention or apologize.",
+      "hand_position": "A-handshape, brush twice on inner edge of non-dominant hand.",
+      "movement": "Brush A-handshape twice on palm of other hand.",
+      "example_sentence": "Excuse me, can I get through?",
+      "related_signs": [
+        "SORRY",
+        "PLEASE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/excuse_me.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 10,
+      "word": "YES",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "agree",
+        "asl",
+        "common",
+        "maybe",
+        "no",
+        "phrases",
+        "yes"
+      ],
+      "meaning": "Affirmative response.",
+      "hand_position": "Closed fist, nod up and down like a head nod.",
+      "movement": "Move fist up and down in nodding motion.",
+      "example_sentence": "Yes, I agree with you.",
+      "related_signs": [
+        "NO",
+        "MAYBE",
+        "AGREE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/yes.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 11,
+      "word": "NO",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "asl",
+        "common",
+        "never",
+        "no",
+        "not",
+        "phrases",
+        "yes"
+      ],
+      "meaning": "Negative response.",
+      "hand_position": "Index and middle fingers together, thumb touching them. Open like scissors.",
+      "movement": "Tap index and middle fingers to thumb, then open.",
+      "example_sentence": "No, I do not want that.",
+      "related_signs": [
+        "YES",
+        "NOT",
+        "NEVER"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/no.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 12,
+      "word": "MAYBE",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "asl",
+        "common",
+        "maybe",
+        "no",
+        "perhaps",
+        "phrases",
+        "yes"
+      ],
+      "meaning": "Uncertain or possible response.",
+      "hand_position": "Both hands with palms up, alternate moving up and down.",
+      "movement": "Move both open hands alternately up and down.",
+      "example_sentence": "Maybe I will come tomorrow.",
+      "related_signs": [
+        "YES",
+        "NO",
+        "PERHAPS"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/maybe.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 13,
+      "word": "WELCOME",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "asl",
+        "common",
+        "phrases",
+        "please",
+        "thank-you",
+        "welcome"
+      ],
+      "meaning": "Response to thanks.",
+      "hand_position": "B-handshape from chin, move outward and down.",
+      "movement": "Move B-hand outward from chin in arc.",
+      "example_sentence": "You are welcome!",
+      "related_signs": [
+        "THANK-YOU",
+        "PLEASE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/welcome.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 14,
+      "word": "MOTHER",
+      "language": "ASL",
+      "category": "Family",
+      "tags": [
+        "asl",
+        "family",
+        "father",
+        "mom",
+        "mother",
+        "parent"
+      ],
+      "meaning": "Female parent.",
+      "hand_position": "Open hand, thumb touching chin.",
+      "movement": "Tap thumb on chin twice.",
+      "example_sentence": "My mother is kind.",
+      "related_signs": [
+        "FATHER",
+        "PARENT",
+        "MOM"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/mother.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 15,
+      "word": "FATHER",
+      "language": "ASL",
+      "category": "Family",
+      "tags": [
+        "asl",
+        "dad",
+        "family",
+        "father",
+        "mother",
+        "parent"
+      ],
+      "meaning": "Male parent.",
+      "hand_position": "Open hand, thumb touching forehead.",
+      "movement": "Tap thumb on forehead twice.",
+      "example_sentence": "My father works hard.",
+      "related_signs": [
+        "MOTHER",
+        "PARENT",
+        "DAD"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/father.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 16,
+      "word": "FAMILY",
+      "language": "ASL",
+      "category": "Family",
+      "tags": [
+        "asl",
+        "brother",
+        "family",
+        "father",
+        "mother"
+      ],
+      "meaning": "Group of related people.",
+      "hand_position": "F-hands touching at tips, then circle outward.",
+      "movement": "Circle both F-hands outward from center.",
+      "example_sentence": "My family is large.",
+      "related_signs": [
+        "MOTHER",
+        "FATHER",
+        "BROTHER"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/family.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 17,
+      "word": "BROTHER",
+      "language": "ASL",
+      "category": "Family",
+      "tags": [
+        "asl",
+        "brother",
+        "family",
+        "sibling",
+        "sister"
+      ],
+      "meaning": "Male sibling.",
+      "hand_position": "L-hands: one at forehead (boy), one at chest (same).",
+      "movement": "Sign BOY + SAME combined.",
+      "example_sentence": "My brother is tall.",
+      "related_signs": [
+        "SISTER",
+        "SIBLING"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/brother.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 18,
+      "word": "SISTER",
+      "language": "ASL",
+      "category": "Family",
+      "tags": [
+        "asl",
+        "brother",
+        "family",
+        "sibling",
+        "sister"
+      ],
+      "meaning": "Female sibling.",
+      "hand_position": "L-hands: one at chin (girl), one at chest (same).",
+      "movement": "Sign GIRL + SAME combined.",
+      "example_sentence": "My sister is smart.",
+      "related_signs": [
+        "BROTHER",
+        "SIBLING"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/sister.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 19,
+      "word": "BABY",
+      "language": "ASL",
+      "category": "Family",
+      "tags": [
+        "asl",
+        "baby",
+        "child",
+        "family",
+        "infant"
+      ],
+      "meaning": "Very young child.",
+      "hand_position": "Arms cradled, rock back and forth.",
+      "movement": "Rock arms back and forth like holding a baby.",
+      "example_sentence": "The baby is sleeping.",
+      "related_signs": [
+        "CHILD",
+        "INFANT"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/baby.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 20,
+      "word": "CHILD",
+      "language": "ASL",
+      "category": "Family",
+      "tags": [
+        "adult",
+        "asl",
+        "baby",
+        "child",
+        "family",
+        "kid"
+      ],
+      "meaning": "Young person.",
+      "hand_position": "Pat chest twice with open hand, then show height.",
+      "movement": "Pat chest, then indicate small height with hand.",
+      "example_sentence": "The child is playing.",
+      "related_signs": [
+        "BABY",
+        "KID",
+        "ADULT"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/child.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 21,
+      "word": "GRANDMOTHER",
+      "language": "ASL",
+      "category": "Family",
+      "tags": [
+        "asl",
+        "family",
+        "grandfather",
+        "grandmother",
+        "grandparent"
+      ],
+      "meaning": "Mother's or father's mother.",
+      "hand_position": "Sign MOTHER, then bounce hand upward twice.",
+      "movement": "MOTHER sign with bouncing motion upward.",
+      "example_sentence": "My grandmother bakes cookies.",
+      "related_signs": [
+        "GRANDFATHER",
+        "GRANDPARENT"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/grandmother.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 22,
+      "word": "GRANDFATHER",
+      "language": "ASL",
+      "category": "Family",
+      "tags": [
+        "asl",
+        "family",
+        "grandfather",
+        "grandmother",
+        "grandparent"
+      ],
+      "meaning": "Mother's or father's father.",
+      "hand_position": "Sign FATHER, then bounce hand upward twice.",
+      "movement": "FATHER sign with bouncing motion upward.",
+      "example_sentence": "My grandfather tells stories.",
+      "related_signs": [
+        "GRANDMOTHER",
+        "GRANDPARENT"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/grandfather.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 23,
+      "word": "HOSPITAL",
+      "language": "ASL",
+      "category": "Medical",
+      "tags": [
+        "asl",
+        "clinic",
+        "doctor",
+        "hospital",
+        "medical",
+        "medicine"
+      ],
+      "meaning": "Place for medical treatment.",
+      "hand_position": "H-hand tapping on opposite wrist twice.",
+      "movement": "Tap H-hand on wrist twice.",
+      "example_sentence": "I need to go to the hospital.",
+      "related_signs": [
+        "DOCTOR",
+        "MEDICINE",
+        "CLINIC"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/hospital.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 24,
+      "word": "DOCTOR",
+      "language": "ASL",
+      "category": "Medical",
+      "tags": [
+        "asl",
+        "doctor",
+        "hospital",
+        "medical",
+        "nurse",
+        "surgeon"
+      ],
+      "meaning": "Medical professional.",
+      "hand_position": "D-hand tapping on inner wrist twice.",
+      "movement": "Tap D-hand on inner wrist twice.",
+      "example_sentence": "The doctor will see you now.",
+      "related_signs": [
+        "HOSPITAL",
+        "NURSE",
+        "SURGEON"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/doctor.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 25,
+      "word": "MEDICINE",
+      "language": "ASL",
+      "category": "Medical",
+      "tags": [
+        "asl",
+        "doctor",
+        "hospital",
+        "medical",
+        "medicine",
+        "pill"
+      ],
+      "meaning": "Substance used for treatment.",
+      "hand_position": "Middle finger touches left palm, then twist wrist.",
+      "movement": "Touch palm and twist wrist.",
+      "example_sentence": "Take your medicine.",
+      "related_signs": [
+        "HOSPITAL",
+        "DOCTOR",
+        "PILL"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/medicine.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 26,
+      "word": "SICK",
+      "language": "ASL",
+      "category": "Medical",
+      "tags": [
+        "asl",
+        "healthy",
+        "hurt",
+        "medical",
+        "pain",
+        "sick"
+      ],
+      "meaning": "Not feeling well.",
+      "hand_position": "Middle fingers of both hands at stomach, move outward.",
+      "movement": "Touch stomach with both middle fingers, then pull outward.",
+      "example_sentence": "I feel sick today.",
+      "related_signs": [
+        "HEALTHY",
+        "PAIN",
+        "HURT"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/sick.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 27,
+      "word": "PAIN",
+      "language": "ASL",
+      "category": "Medical",
+      "tags": [
+        "ache",
+        "asl",
+        "hurt",
+        "medical",
+        "pain",
+        "sick"
+      ],
+      "meaning": "Physical discomfort.",
+      "hand_position": "Index fingers pointing at each other, twist in opposite directions.",
+      "movement": "Twist index fingers in opposite directions near affected area.",
+      "example_sentence": "I have pain in my head.",
+      "related_signs": [
+        "SICK",
+        "HURT",
+        "ACHE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/pain.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 28,
+      "word": "HELP",
+      "language": "ASL",
+      "category": "Medical",
+      "tags": [
+        "asl",
+        "assist",
+        "emergency",
+        "help",
+        "medical",
+        "save"
+      ],
+      "meaning": "Assistance needed.",
+      "hand_position": "Right hand on top of left fist, lift upward.",
+      "movement": "Lift right hand from left fist upward.",
+      "example_sentence": "Help me, please!",
+      "related_signs": [
+        "EMERGENCY",
+        "SAVE",
+        "ASSIST"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/help.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 29,
+      "word": "EMERGENCY",
+      "language": "ASL",
+      "category": "Medical",
+      "tags": [
+        "asl",
+        "danger",
+        "emergency",
+        "help",
+        "medical",
+        "urgent"
+      ],
+      "meaning": "Urgent situation.",
+      "hand_position": "Both E-hands, palms facing body, move outward.",
+      "movement": "Move both E-hands outward from chest.",
+      "example_sentence": "This is an emergency!",
+      "related_signs": [
+        "HELP",
+        "DANGER",
+        "URGENT"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/emergency.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 30,
+      "word": "NURSE",
+      "language": "ASL",
+      "category": "Medical",
+      "tags": [
+        "asl",
+        "doctor",
+        "hospital",
+        "medical",
+        "nurse"
+      ],
+      "meaning": "Healthcare assistant.",
+      "hand_position": "N-hand at shoulder, tap twice.",
+      "movement": "Tap N-hand on shoulder twice.",
+      "example_sentence": "The nurse is kind.",
+      "related_signs": [
+        "DOCTOR",
+        "HOSPITAL"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/nurse.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 31,
+      "word": "FIRE",
+      "language": "ASL",
+      "category": "Emergency",
+      "tags": [
+        "asl",
+        "burn",
+        "emergency",
+        "fire",
+        "hot"
+      ],
+      "meaning": "Dangerous burning.",
+      "hand_position": "Fingers wiggling upward from palm, like flames.",
+      "movement": "Wiggle fingers upward from open palm.",
+      "example_sentence": "Fire! Call emergency services!",
+      "related_signs": [
+        "BURN",
+        "HOT",
+        "EMERGENCY"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/fire.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 32,
+      "word": "POLICE",
+      "language": "ASL",
+      "category": "Emergency",
+      "tags": [
+        "asl",
+        "emergency",
+        "law",
+        "officer",
+        "police"
+      ],
+      "meaning": "Law enforcement officer.",
+      "hand_position": "C-hand at chest, tap twice.",
+      "movement": "Tap C-hand on chest twice (from badge shape).",
+      "example_sentence": "Call the police!",
+      "related_signs": [
+        "OFFICER",
+        "LAW",
+        "EMERGENCY"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/police.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 33,
+      "word": "STOP",
+      "language": "ASL",
+      "category": "Emergency",
+      "tags": [
+        "asl",
+        "emergency",
+        "halt",
+        "no",
+        "stop",
+        "wait"
+      ],
+      "meaning": "Cease movement or action.",
+      "hand_position": "One hand flat, palm facing out, move forward sharply.",
+      "movement": "Push flat palm forward firmly.",
+      "example_sentence": "Stop! Do not move!",
+      "related_signs": [
+        "WAIT",
+        "HALT",
+        "NO"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/stop.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 34,
+      "word": "DANGER",
+      "language": "ASL",
+      "category": "Emergency",
+      "tags": [
+        "asl",
+        "caution",
+        "danger",
+        "emergency",
+        "warning"
+      ],
+      "meaning": "Risk of harm.",
+      "hand_position": "X-hands crossed, move apart sharply.",
+      "movement": "Cross X-hands then pull apart quickly.",
+      "example_sentence": "Danger! Stay back!",
+      "related_signs": [
+        "WARNING",
+        "EMERGENCY",
+        "CAUTION"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/danger.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 35,
+      "word": "WATER",
+      "language": "ASL",
+      "category": "Food",
+      "tags": [
+        "asl",
+        "drink",
+        "food",
+        "thirsty",
+        "water"
+      ],
+      "meaning": "Clear liquid essential for life.",
+      "hand_position": "W-hand at chin, tap index finger.",
+      "movement": "Tap W-hand on chin.",
+      "example_sentence": "I need water.",
+      "related_signs": [
+        "DRINK",
+        "FOOD",
+        "THIRSTY"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/water.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 36,
+      "word": "FOOD",
+      "language": "ASL",
+      "category": "Food",
+      "tags": [
+        "asl",
+        "eat",
+        "food",
+        "meal",
+        "water"
+      ],
+      "meaning": "Substance eaten for nutrition.",
+      "hand_position": "Fingertips together, touch mouth twice.",
+      "movement": "Touch fingertips to mouth twice.",
+      "example_sentence": "The food is delicious.",
+      "related_signs": [
+        "EAT",
+        "WATER",
+        "MEAL"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/food.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 37,
+      "word": "EAT",
+      "language": "ASL",
+      "category": "Food",
+      "tags": [
+        "asl",
+        "eat",
+        "food",
+        "hungry",
+        "meal"
+      ],
+      "meaning": "To consume food.",
+      "hand_position": "O-hand to mouth, close and open.",
+      "movement": "Bring O-hand to mouth and open.",
+      "example_sentence": "I want to eat.",
+      "related_signs": [
+        "FOOD",
+        "HUNGRY",
+        "MEAL"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/eat.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 38,
+      "word": "DRINK",
+      "language": "ASL",
+      "category": "Food",
+      "tags": [
+        "asl",
+        "drink",
+        "food",
+        "thirsty",
+        "water"
+      ],
+      "meaning": "To consume liquid.",
+      "hand_position": "C-hand at mouth, tilt back like drinking from cup.",
+      "movement": "Tilt C-hand at mouth like drinking.",
+      "example_sentence": "I want to drink juice.",
+      "related_signs": [
+        "WATER",
+        "THIRSTY"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/drink.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 39,
+      "word": "HUNGRY",
+      "language": "ASL",
+      "category": "Food",
+      "tags": [
+        "asl",
+        "eat",
+        "food",
+        "full",
+        "hungry"
+      ],
+      "meaning": "Needing food.",
+      "hand_position": "C-hand at stomach, move down in circular motion.",
+      "movement": "Circle C-hand down from stomach.",
+      "example_sentence": "I am hungry.",
+      "related_signs": [
+        "EAT",
+        "FOOD",
+        "FULL"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/hungry.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 40,
+      "word": "BREAD",
+      "language": "ASL",
+      "category": "Food",
+      "tags": [
+        "asl",
+        "bread",
+        "eat",
+        "food",
+        "sandwich"
+      ],
+      "meaning": "Baked food made from flour.",
+      "hand_position": "Both hands slice imaginary bread with knife motion.",
+      "movement": "Sawing motion with both hands like slicing bread.",
+      "example_sentence": "I want bread with butter.",
+      "related_signs": [
+        "FOOD",
+        "EAT",
+        "SANDWICH"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/bread.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 41,
+      "word": "MILK",
+      "language": "ASL",
+      "category": "Food",
+      "tags": [
+        "asl",
+        "drink",
+        "food",
+        "milk",
+        "water"
+      ],
+      "meaning": "White liquid from cows.",
+      "hand_position": "Squeeze imaginary udder with both hands alternately.",
+      "movement": "Alternate squeezing motion with both fists.",
+      "example_sentence": "I drink milk every morning.",
+      "related_signs": [
+        "DRINK",
+        "WATER",
+        "FOOD"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/milk.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 42,
+      "word": "COFFEE",
+      "language": "ASL",
+      "category": "Food",
+      "tags": [
+        "asl",
+        "coffee",
+        "drink",
+        "food",
+        "hot",
+        "tea"
+      ],
+      "meaning": "Hot caffeinated beverage.",
+      "hand_position": "F-hands, one on top of other, twist like grinding coffee.",
+      "movement": "Twist F-hands in grinding motion.",
+      "example_sentence": "I need coffee.",
+      "related_signs": [
+        "DRINK",
+        "TEA",
+        "HOT"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/coffee.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 43,
+      "word": "APPLE",
+      "language": "ASL",
+      "category": "Food",
+      "tags": [
+        "apple",
+        "asl",
+        "eat",
+        "food",
+        "fruit"
+      ],
+      "meaning": "Round red or green fruit.",
+      "hand_position": "Knuckle of index finger at cheek, twist.",
+      "movement": "Twist knuckle on cheek like checking apple firmness.",
+      "example_sentence": "I ate an apple.",
+      "related_signs": [
+        "FRUIT",
+        "FOOD",
+        "EAT"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/apple.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 44,
+      "word": "ONE",
+      "language": "ASL",
+      "category": "Numbers",
+      "tags": [
+        "asl",
+        "first",
+        "numbers",
+        "one",
+        "three",
+        "two"
+      ],
+      "meaning": "Number 1.",
+      "hand_position": "Index finger extended upward.",
+      "movement": "Hold index finger up.",
+      "example_sentence": "I have one apple.",
+      "related_signs": [
+        "TWO",
+        "THREE",
+        "FIRST"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/one.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 45,
+      "word": "TWO",
+      "language": "ASL",
+      "category": "Numbers",
+      "tags": [
+        "asl",
+        "numbers",
+        "one",
+        "second",
+        "three",
+        "two"
+      ],
+      "meaning": "Number 2.",
+      "hand_position": "Index and middle fingers extended.",
+      "movement": "Hold two fingers up.",
+      "example_sentence": "I have two cats.",
+      "related_signs": [
+        "ONE",
+        "THREE",
+        "SECOND"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/two.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 46,
+      "word": "THREE",
+      "language": "ASL",
+      "category": "Numbers",
+      "tags": [
+        "asl",
+        "numbers",
+        "one",
+        "third",
+        "three",
+        "two"
+      ],
+      "meaning": "Number 3.",
+      "hand_position": "Index, middle, and ring fingers extended.",
+      "movement": "Hold three fingers up.",
+      "example_sentence": "Three people are here.",
+      "related_signs": [
+        "ONE",
+        "TWO",
+        "THIRD"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/three.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 47,
+      "word": "FOUR",
+      "language": "ASL",
+      "category": "Numbers",
+      "tags": [
+        "asl",
+        "five",
+        "four",
+        "numbers",
+        "three"
+      ],
+      "meaning": "Number 4.",
+      "hand_position": "All four fingers extended, thumb tucked.",
+      "movement": "Hold four fingers up with thumb tucked.",
+      "example_sentence": "I have four books.",
+      "related_signs": [
+        "FIVE",
+        "THREE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/four.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 48,
+      "word": "FIVE",
+      "language": "ASL",
+      "category": "Numbers",
+      "tags": [
+        "asl",
+        "five",
+        "four",
+        "numbers",
+        "six"
+      ],
+      "meaning": "Number 5.",
+      "hand_position": "All five fingers extended (open hand).",
+      "movement": "Hold open hand with all fingers spread.",
+      "example_sentence": "I have five fingers.",
+      "related_signs": [
+        "FOUR",
+        "SIX"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/five.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 49,
+      "word": "TEN",
+      "language": "ASL",
+      "category": "Numbers",
+      "tags": [
+        "asl",
+        "five",
+        "numbers",
+        "ten",
+        "twenty"
+      ],
+      "meaning": "Number 10.",
+      "hand_position": "Shake A-handshape (thumb out) with twisting motion.",
+      "movement": "Shake A-handshape with thumb flicking.",
+      "example_sentence": "I have ten dollars.",
+      "related_signs": [
+        "FIVE",
+        "TWENTY"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/ten.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 50,
+      "word": "HUNDRED",
+      "language": "ASL",
+      "category": "Numbers",
+      "tags": [
+        "asl",
+        "hundred",
+        "many",
+        "numbers",
+        "thousand"
+      ],
+      "meaning": "Number 100.",
+      "hand_position": "C-handshape, palm facing signer, move in small arc.",
+      "movement": "Move C-hand in small arc.",
+      "example_sentence": "One hundred people came.",
+      "related_signs": [
+        "THOUSAND",
+        "MANY"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/hundred.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 51,
+      "word": "A",
+      "language": "ASL",
+      "category": "Alphabet",
+      "tags": [
+        "a",
+        "alphabet",
+        "asl",
+        "b",
+        "c"
+      ],
+      "meaning": "Letter A.",
+      "hand_position": "Fist with thumb on side of fingers.",
+      "movement": "Hold fist steady.",
+      "example_sentence": "A is the first letter.",
+      "related_signs": [
+        "B",
+        "C"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/a.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 52,
+      "word": "B",
+      "language": "ASL",
+      "category": "Alphabet",
+      "tags": [
+        "a",
+        "alphabet",
+        "asl",
+        "b",
+        "c"
+      ],
+      "meaning": "Letter B.",
+      "hand_position": "Flat hand, fingers together, thumb tucked.",
+      "movement": "Hold palm facing outward.",
+      "example_sentence": "B is the second letter.",
+      "related_signs": [
+        "A",
+        "C"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/b.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 53,
+      "word": "C",
+      "language": "ASL",
+      "category": "Alphabet",
+      "tags": [
+        "a",
+        "alphabet",
+        "asl",
+        "b",
+        "c"
+      ],
+      "meaning": "Letter C.",
+      "hand_position": "Hand curved in C shape.",
+      "movement": "Hold C shape steady.",
+      "example_sentence": "C is the third letter.",
+      "related_signs": [
+        "A",
+        "B"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/c.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 54,
+      "word": "D",
+      "language": "ASL",
+      "category": "Alphabet",
+      "tags": [
+        "alphabet",
+        "asl",
+        "c",
+        "d",
+        "e"
+      ],
+      "meaning": "Letter D.",
+      "hand_position": "Index finger up, thumb and middle finger touch to form circle.",
+      "movement": "Hold D-handshape steady.",
+      "example_sentence": "D is the fourth letter.",
+      "related_signs": [
+        "C",
+        "E"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/d.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 55,
+      "word": "E",
+      "language": "ASL",
+      "category": "Alphabet",
+      "tags": [
+        "alphabet",
+        "asl",
+        "d",
+        "e",
+        "f"
+      ],
+      "meaning": "Letter E.",
+      "hand_position": "All fingers curled in, thumb across fingertips.",
+      "movement": "Hold E-handshape steady.",
+      "example_sentence": "E is the fifth letter.",
+      "related_signs": [
+        "D",
+        "F"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/e.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 56,
+      "word": "F",
+      "language": "ASL",
+      "category": "Alphabet",
+      "tags": [
+        "alphabet",
+        "asl",
+        "e",
+        "f",
+        "g"
+      ],
+      "meaning": "Letter F.",
+      "hand_position": "Index and thumb touch, other fingers extended up.",
+      "movement": "Hold OK-sign with other fingers up.",
+      "example_sentence": "F is the sixth letter.",
+      "related_signs": [
+        "E",
+        "G"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/f.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 57,
+      "word": "I",
+      "language": "ASL",
+      "category": "Alphabet",
+      "tags": [
+        "alphabet",
+        "asl",
+        "i",
+        "j",
+        "l"
+      ],
+      "meaning": "Letter I.",
+      "hand_position": "Pinky finger extended, other fingers closed into fist.",
+      "movement": "Hold pinky up.",
+      "example_sentence": "I love you.",
+      "related_signs": [
+        "J",
+        "L"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/i.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 58,
+      "word": "L",
+      "language": "ASL",
+      "category": "Alphabet",
+      "tags": [
+        "alphabet",
+        "asl",
+        "i",
+        "k",
+        "l"
+      ],
+      "meaning": "Letter L.",
+      "hand_position": "Index finger and thumb extended in L shape.",
+      "movement": "Hold L-handshape steady.",
+      "example_sentence": "L is for love.",
+      "related_signs": [
+        "I",
+        "K"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/l.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 59,
+      "word": "R",
+      "language": "ASL",
+      "category": "Alphabet",
+      "tags": [
+        "alphabet",
+        "asl",
+        "p",
+        "r",
+        "s"
+      ],
+      "meaning": "Letter R.",
+      "hand_position": "Crossed fingers: index over middle.",
+      "movement": "Hold crossed fingers steady.",
+      "example_sentence": "R is the eighteenth letter.",
+      "related_signs": [
+        "P",
+        "S"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/r.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 60,
+      "word": "S",
+      "language": "ASL",
+      "category": "Alphabet",
+      "tags": [
+        "alphabet",
+        "asl",
+        "r",
+        "s",
+        "t"
+      ],
+      "meaning": "Letter S.",
+      "hand_position": "Fist with thumb over fingers.",
+      "movement": "Hold fist with thumb wrapped over.",
+      "example_sentence": "S is for sign.",
+      "related_signs": [
+        "R",
+        "T"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/s.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 61,
+      "word": "W",
+      "language": "ASL",
+      "category": "Alphabet",
+      "tags": [
+        "alphabet",
+        "asl",
+        "v",
+        "w",
+        "x"
+      ],
+      "meaning": "Letter W.",
+      "hand_position": "Index, middle, and ring fingers extended, thumb and pinky tucked.",
+      "movement": "Hold three middle fingers up.",
+      "example_sentence": "W is for water.",
+      "related_signs": [
+        "V",
+        "X"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/w.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 62,
+      "word": "Y",
+      "language": "ASL",
+      "category": "Alphabet",
+      "tags": [
+        "alphabet",
+        "asl",
+        "x",
+        "y",
+        "z"
+      ],
+      "meaning": "Letter Y.",
+      "hand_position": "Pinky and thumb extended, other fingers closed.",
+      "movement": "Hold hang-loose sign.",
+      "example_sentence": "Y is for yes.",
+      "related_signs": [
+        "X",
+        "Z"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/y.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 63,
+      "word": "HOW-ARE-YOU",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "are",
+        "asl",
+        "common",
+        "fine",
+        "hello",
+        "how",
+        "phrases",
+        "you"
+      ],
+      "meaning": "Asking about someone's well-being.",
+      "hand_position": "Both hands with bent fingers, palms up, move outward.",
+      "movement": "Move both hands outward from chest.",
+      "example_sentence": "How are you today?",
+      "related_signs": [
+        "HELLO",
+        "FINE",
+        "YOU"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/how_are_you.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 64,
+      "word": "I-LOVE-YOU",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "asl",
+        "common",
+        "friend",
+        "i",
+        "like",
+        "love",
+        "phrases",
+        "you"
+      ],
+      "meaning": "Expression of deep affection.",
+      "hand_position": "I-L-Y handshape: pinky, index, thumb extended.",
+      "movement": "Hold I-L-Y handshape at chest, move outward.",
+      "example_sentence": "I love you very much.",
+      "related_signs": [
+        "LOVE",
+        "LIKE",
+        "FRIEND"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/i_love_you.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 65,
+      "word": "GOOD",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "asl",
+        "bad",
+        "common",
+        "fine",
+        "good",
+        "great",
+        "phrases"
+      ],
+      "meaning": "Positive quality.",
+      "hand_position": "Flat hand from chin, move forward and down.",
+      "movement": "Move flat hand from chin outward.",
+      "example_sentence": "That is good!",
+      "related_signs": [
+        "BAD",
+        "GREAT",
+        "FINE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/good.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 66,
+      "word": "BAD",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "asl",
+        "bad",
+        "common",
+        "good",
+        "phrases",
+        "wrong"
+      ],
+      "meaning": "Negative quality.",
+      "hand_position": "Flat hand under chin, flip outward.",
+      "movement": "Flip flat hand outward from under chin.",
+      "example_sentence": "That is bad.",
+      "related_signs": [
+        "GOOD",
+        "WRONG"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/bad.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 67,
+      "word": "FINE",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "asl",
+        "common",
+        "fine",
+        "good",
+        "okay",
+        "phrases",
+        "well"
+      ],
+      "meaning": "Satisfactory or well.",
+      "hand_position": "Thumbs up at chest, move slightly upward.",
+      "movement": "Give thumbs up.",
+      "example_sentence": "I am fine, thank you.",
+      "related_signs": [
+        "GOOD",
+        "WELL",
+        "OKAY"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/fine.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 68,
+      "word": "WHERE",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "asl",
+        "common",
+        "phrases",
+        "what",
+        "when",
+        "where",
+        "who"
+      ],
+      "meaning": "Questioning location.",
+      "hand_position": "Index fingers pointing outward, shake side to side.",
+      "movement": "Shake both index fingers side to side.",
+      "example_sentence": "Where is the bathroom?",
+      "related_signs": [
+        "WHAT",
+        "WHO",
+        "WHEN"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/where.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 69,
+      "word": "WHAT",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "asl",
+        "common",
+        "phrases",
+        "what",
+        "where",
+        "who",
+        "why"
+      ],
+      "meaning": "Questioning identity or nature.",
+      "hand_position": "Index fingers extended, palms up, move both hands outward.",
+      "movement": "Move both open hands outward with questioning expression.",
+      "example_sentence": "What is your name?",
+      "related_signs": [
+        "WHERE",
+        "WHO",
+        "WHY"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/what.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 70,
+      "word": "WHO",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "asl",
+        "common",
+        "phrases",
+        "what",
+        "where",
+        "which",
+        "who"
+      ],
+      "meaning": "Questioning person identity.",
+      "hand_position": "L-hand at chin, move outward in arc.",
+      "movement": "Move L-hand from chin outward.",
+      "example_sentence": "Who is that person?",
+      "related_signs": [
+        "WHAT",
+        "WHERE",
+        "WHICH"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/who.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 71,
+      "word": "WHY",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "asl",
+        "because",
+        "common",
+        "how",
+        "phrases",
+        "what",
+        "why"
+      ],
+      "meaning": "Questioning reason.",
+      "hand_position": "Index finger at forehead, flick outward.",
+      "movement": "Touch forehead with index finger, then flick outward.",
+      "example_sentence": "Why are you late?",
+      "related_signs": [
+        "WHAT",
+        "HOW",
+        "BECAUSE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/why.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 72,
+      "word": "HOW",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "asl",
+        "common",
+        "how",
+        "phrases",
+        "what",
+        "where",
+        "why"
+      ],
+      "meaning": "Questioning manner or method.",
+      "hand_position": "Both hands with bent fingers, palms up, alternate moving up and down.",
+      "movement": "Move both hands alternately up and down.",
+      "example_sentence": "How do you sign this?",
+      "related_signs": [
+        "WHAT",
+        "WHY",
+        "WHERE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/how.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 73,
+      "word": "NAME",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "asl",
+        "called",
+        "common",
+        "name",
+        "phrases",
+        "what",
+        "who"
+      ],
+      "meaning": "What someone is called.",
+      "hand_position": "H-hands: tap index and middle fingers of both hands together twice.",
+      "movement": "Tap H-hands together twice.",
+      "example_sentence": "My name is John.",
+      "related_signs": [
+        "CALLED",
+        "WHO",
+        "WHAT"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/name.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 74,
+      "word": "NICE-TO-MEET-YOU",
+      "language": "ASL",
+      "category": "Common phrases",
+      "tags": [
+        "asl",
+        "common",
+        "hello",
+        "meet",
+        "nice",
+        "phrases",
+        "to",
+        "welcome",
+        "you"
+      ],
+      "meaning": "Pleasant first encounter.",
+      "hand_position": "Flat hands together, then move outward in arc.",
+      "movement": "Press palms together then arc outward.",
+      "example_sentence": "Nice to meet you!",
+      "related_signs": [
+        "HELLO",
+        "WELCOME"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/nice_to_meet_you.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 75,
+      "word": "SCHOOL",
+      "language": "ASL",
+      "category": "School",
+      "tags": [
+        "asl",
+        "class",
+        "learn",
+        "school",
+        "student"
+      ],
+      "meaning": "Place of learning.",
+      "hand_position": "Clap hands together twice (like clapping erasers).",
+      "movement": "Clap open hands together twice.",
+      "example_sentence": "I go to school.",
+      "related_signs": [
+        "LEARN",
+        "STUDENT",
+        "CLASS"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/school.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 76,
+      "word": "LEARN",
+      "language": "ASL",
+      "category": "School",
+      "tags": [
+        "asl",
+        "know",
+        "learn",
+        "school",
+        "study"
+      ],
+      "meaning": "To acquire knowledge.",
+      "hand_position": "Flat hand at forehead, pull down to palm of other hand.",
+      "movement": "Move hand from forehead down to other palm.",
+      "example_sentence": "I want to learn ASL.",
+      "related_signs": [
+        "STUDY",
+        "SCHOOL",
+        "KNOW"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/learn.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 77,
+      "word": "TEACHER",
+      "language": "ASL",
+      "category": "School",
+      "tags": [
+        "asl",
+        "instructor",
+        "professor",
+        "school",
+        "teacher"
+      ],
+      "meaning": "Person who teaches.",
+      "hand_position": "Sign LEARN + PERSON (flat hand down from chin).",
+      "movement": "Learn sign followed by person indicator.",
+      "example_sentence": "My teacher is patient.",
+      "related_signs": [
+        "PROFESSOR",
+        "INSTRUCTOR"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/teacher.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 78,
+      "word": "STUDENT",
+      "language": "ASL",
+      "category": "School",
+      "tags": [
+        "asl",
+        "learn",
+        "pupil",
+        "school",
+        "student"
+      ],
+      "meaning": "Person who learns.",
+      "hand_position": "Sign LEARN + PERSON.",
+      "movement": "Learn sign followed by person indicator.",
+      "example_sentence": "The student studies hard.",
+      "related_signs": [
+        "LEARN",
+        "PUPIL"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/student.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 79,
+      "word": "BOOK",
+      "language": "ASL",
+      "category": "School",
+      "tags": [
+        "asl",
+        "book",
+        "library",
+        "page",
+        "read",
+        "school"
+      ],
+      "meaning": "Written pages bound together.",
+      "hand_position": "Open hands together, then open like a book.",
+      "movement": "Open hands from together to apart like opening book.",
+      "example_sentence": "I read a book.",
+      "related_signs": [
+        "READ",
+        "PAGE",
+        "LIBRARY"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/book.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 80,
+      "word": "WRITE",
+      "language": "ASL",
+      "category": "School",
+      "tags": [
+        "asl",
+        "paper",
+        "pen",
+        "school",
+        "type",
+        "write"
+      ],
+      "meaning": "To mark paper with pen.",
+      "hand_position": "I-handshape, move like writing on palm of other hand.",
+      "movement": "Make writing motion on palm.",
+      "example_sentence": "I need to write a letter.",
+      "related_signs": [
+        "PEN",
+        "PAPER",
+        "TYPE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/write.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 81,
+      "word": "WORK",
+      "language": "ASL",
+      "category": "Work",
+      "tags": [
+        "asl",
+        "business",
+        "employ",
+        "job",
+        "work"
+      ],
+      "meaning": "To do a job.",
+      "hand_position": "S-hands, tap together twice.",
+      "movement": "Tap S-hands together twice.",
+      "example_sentence": "I go to work.",
+      "related_signs": [
+        "JOB",
+        "BUSINESS",
+        "EMPLOY"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/work.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 82,
+      "word": "MONEY",
+      "language": "ASL",
+      "category": "Work",
+      "tags": [
+        "asl",
+        "cash",
+        "dollar",
+        "money",
+        "pay",
+        "work"
+      ],
+      "meaning": "Currency for exchange.",
+      "hand_position": "Rub thumb and fingers together in circular motion.",
+      "movement": "Rub fingertips together like counting coins.",
+      "example_sentence": "I need money.",
+      "related_signs": [
+        "CASH",
+        "PAY",
+        "DOLLAR"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/money.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 83,
+      "word": "CAR",
+      "language": "ASL",
+      "category": "Travel",
+      "tags": [
+        "asl",
+        "car",
+        "drive",
+        "travel",
+        "truck",
+        "vehicle"
+      ],
+      "meaning": "Motor vehicle.",
+      "hand_position": "S-hands at chest, move in steering motion.",
+      "movement": "Move S-hands like steering a wheel.",
+      "example_sentence": "I drive a car.",
+      "related_signs": [
+        "DRIVE",
+        "VEHICLE",
+        "TRUCK"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/car.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 84,
+      "word": "HOME",
+      "language": "ASL",
+      "category": "Travel",
+      "tags": [
+        "asl",
+        "home",
+        "house",
+        "live",
+        "place",
+        "travel"
+      ],
+      "meaning": "Place where one lives.",
+      "hand_position": "Flat hand at mouth, then move to palm of other hand.",
+      "movement": "Touch mouth then place hand on other palm.",
+      "example_sentence": "I am going home.",
+      "related_signs": [
+        "HOUSE",
+        "LIVE",
+        "PLACE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/home.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 85,
+      "word": "GO",
+      "language": "ASL",
+      "category": "Travel",
+      "tags": [
+        "asl",
+        "come",
+        "go",
+        "leave",
+        "travel",
+        "walk"
+      ],
+      "meaning": "To move from one place to another.",
+      "hand_position": "Index fingers together, move forward in arc.",
+      "movement": "Move both index fingers forward together.",
+      "example_sentence": "Let's go!",
+      "related_signs": [
+        "LEAVE",
+        "COME",
+        "WALK"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/go.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 86,
+      "word": "COME",
+      "language": "ASL",
+      "category": "Travel",
+      "tags": [
+        "arrive",
+        "asl",
+        "come",
+        "go",
+        "here",
+        "travel"
+      ],
+      "meaning": "To move toward speaker.",
+      "hand_position": "Both hands beckoning inward.",
+      "movement": "Beckon with both hands toward yourself.",
+      "example_sentence": "Come here, please.",
+      "related_signs": [
+        "GO",
+        "HERE",
+        "ARRIVE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/come.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 87,
+      "word": "WALK",
+      "language": "ASL",
+      "category": "Travel",
+      "tags": [
+        "asl",
+        "foot",
+        "go",
+        "run",
+        "travel",
+        "walk"
+      ],
+      "meaning": "To move on foot.",
+      "hand_position": "Both index and middle fingers walking on palm of other hand.",
+      "movement": "Walk two fingers across palm.",
+      "example_sentence": "I walk to school.",
+      "related_signs": [
+        "RUN",
+        "GO",
+        "FOOT"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/walk.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 88,
+      "word": "BUS",
+      "language": "ASL",
+      "category": "Travel",
+      "tags": [
+        "asl",
+        "bus",
+        "car",
+        "ride",
+        "train",
+        "travel"
+      ],
+      "meaning": "Public transport vehicle.",
+      "hand_position": "B-hands at chest, move forward while shaking.",
+      "movement": "Move B-hands forward with slight shake.",
+      "example_sentence": "I take the bus.",
+      "related_signs": [
+        "CAR",
+        "TRAIN",
+        "RIDE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/bus.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 89,
+      "word": "HAPPY",
+      "language": "ASL",
+      "category": "Emotions",
+      "tags": [
+        "asl",
+        "emotions",
+        "glad",
+        "happy",
+        "joy",
+        "sad"
+      ],
+      "meaning": "Feeling joy.",
+      "hand_position": "Flat hand at chest, move upward in circular motion.",
+      "movement": "Circle flat hand upward from chest.",
+      "example_sentence": "I am happy today.",
+      "related_signs": [
+        "SAD",
+        "JOY",
+        "GLAD"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/happy.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 90,
+      "word": "SAD",
+      "language": "ASL",
+      "category": "Emotions",
+      "tags": [
+        "asl",
+        "cry",
+        "emotions",
+        "happy",
+        "sad",
+        "upset"
+      ],
+      "meaning": "Feeling sorrow.",
+      "hand_position": "Both hands at face, move downward.",
+      "movement": "Move both hands down from face.",
+      "example_sentence": "I feel sad.",
+      "related_signs": [
+        "HAPPY",
+        "CRY",
+        "UPSET"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/sad.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 91,
+      "word": "ANGRY",
+      "language": "ASL",
+      "category": "Emotions",
+      "tags": [
+        "angry",
+        "asl",
+        "emotions",
+        "frustrated",
+        "mad"
+      ],
+      "meaning": "Feeling rage.",
+      "hand_position": "Claw hands at stomach, move upward sharply.",
+      "movement": "Pull claw hands up from stomach.",
+      "example_sentence": "Do not be angry.",
+      "related_signs": [
+        "MAD",
+        "FRUSTRATED"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/angry.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 92,
+      "word": "LOVE",
+      "language": "ASL",
+      "category": "Emotions",
+      "tags": [
+        "adore",
+        "asl",
+        "care",
+        "emotions",
+        "like",
+        "love"
+      ],
+      "meaning": "Deep affection.",
+      "hand_position": "Cross arms over chest, hug yourself.",
+      "movement": "Cross arms and hug chest.",
+      "example_sentence": "I love my family.",
+      "related_signs": [
+        "LIKE",
+        "ADORE",
+        "CARE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/love.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 93,
+      "word": "SCARED",
+      "language": "ASL",
+      "category": "Emotions",
+      "tags": [
+        "afraid",
+        "asl",
+        "emotions",
+        "fear",
+        "nervous",
+        "scared"
+      ],
+      "meaning": "Feeling fear.",
+      "hand_position": "Both hands at chest, move outward while opening fingers.",
+      "movement": "Flap hands outward from chest like startled.",
+      "example_sentence": "I am scared of spiders.",
+      "related_signs": [
+        "AFRAID",
+        "FEAR",
+        "NERVOUS"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/scared.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 94,
+      "word": "TIRED",
+      "language": "ASL",
+      "category": "Emotions",
+      "tags": [
+        "asl",
+        "emotions",
+        "exhausted",
+        "sleep",
+        "tired"
+      ],
+      "meaning": "Needing rest.",
+      "hand_position": "Flat hands at chest, droop downward.",
+      "movement": "Let hands droop down from chest.",
+      "example_sentence": "I am very tired.",
+      "related_signs": [
+        "SLEEP",
+        "EXHAUSTED"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/tired.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 95,
+      "word": "DOG",
+      "language": "ASL",
+      "category": "Animals",
+      "tags": [
+        "animals",
+        "asl",
+        "cat",
+        "dog",
+        "pet",
+        "puppy"
+      ],
+      "meaning": "Common pet animal.",
+      "hand_position": "Pat thigh, then snap fingers or clap.",
+      "movement": "Pat leg then snap fingers (calling a dog).",
+      "example_sentence": "I have a dog.",
+      "related_signs": [
+        "CAT",
+        "PET",
+        "PUPPY"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/dog.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 96,
+      "word": "CAT",
+      "language": "ASL",
+      "category": "Animals",
+      "tags": [
+        "animals",
+        "asl",
+        "cat",
+        "dog",
+        "kitten",
+        "pet"
+      ],
+      "meaning": "Common pet animal.",
+      "hand_position": "Fingers spread at cheeks, pull outward like whiskers.",
+      "movement": "Pull fingers from cheeks outward like whiskers.",
+      "example_sentence": "The cat is sleeping.",
+      "related_signs": [
+        "DOG",
+        "KITTEN",
+        "PET"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/cat.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 97,
+      "word": "BIRD",
+      "language": "ASL",
+      "category": "Animals",
+      "tags": [
+        "animals",
+        "asl",
+        "bird",
+        "eagle",
+        "fly",
+        "wing"
+      ],
+      "meaning": "Flying animal.",
+      "hand_position": "Thumbs at armpits, flap hands like wings.",
+      "movement": "Flap hands at sides like bird wings.",
+      "example_sentence": "The bird is flying.",
+      "related_signs": [
+        "FLY",
+        "WING",
+        "EAGLE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/bird.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 98,
+      "word": "FISH",
+      "language": "ASL",
+      "category": "Animals",
+      "tags": [
+        "animals",
+        "asl",
+        "fish",
+        "shark",
+        "swim",
+        "water"
+      ],
+      "meaning": "Swimming animal.",
+      "hand_position": "One hand flat, wiggle side to side like a fish.",
+      "movement": "Wiggle flat hand side to side.",
+      "example_sentence": "I see a fish.",
+      "related_signs": [
+        "SWIM",
+        "WATER",
+        "SHARK"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/fish.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 99,
+      "word": "RED",
+      "language": "ASL",
+      "category": "Colors",
+      "tags": [
+        "asl",
+        "color",
+        "colors",
+        "orange",
+        "pink",
+        "red"
+      ],
+      "meaning": "Color of blood.",
+      "hand_position": "Index finger at lip, pull down.",
+      "movement": "Brush index finger down from bottom lip.",
+      "example_sentence": "The apple is red.",
+      "related_signs": [
+        "COLOR",
+        "PINK",
+        "ORANGE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/red.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 100,
+      "word": "BLUE",
+      "language": "ASL",
+      "category": "Colors",
+      "tags": [
+        "asl",
+        "blue",
+        "color",
+        "colors",
+        "green",
+        "purple"
+      ],
+      "meaning": "Color of sky.",
+      "hand_position": "B-handshape, shake side to side.",
+      "movement": "Shake B-hand side to side.",
+      "example_sentence": "The sky is blue.",
+      "related_signs": [
+        "COLOR",
+        "GREEN",
+        "PURPLE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/blue.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 101,
+      "word": "GREEN",
+      "language": "ASL",
+      "category": "Colors",
+      "tags": [
+        "asl",
+        "blue",
+        "brown",
+        "colors",
+        "green",
+        "yellow"
+      ],
+      "meaning": "Color of grass.",
+      "hand_position": "G-handshape, shake side to side.",
+      "movement": "Shake G-hand side to side.",
+      "example_sentence": "The grass is green.",
+      "related_signs": [
+        "BLUE",
+        "YELLOW",
+        "BROWN"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/green.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 102,
+      "word": "BLACK",
+      "language": "ASL",
+      "category": "Colors",
+      "tags": [
+        "asl",
+        "black",
+        "color",
+        "colors",
+        "dark",
+        "white"
+      ],
+      "meaning": "Darkest color.",
+      "hand_position": "Index finger across forehead from left to right.",
+      "movement": "Draw line across forehead with index finger.",
+      "example_sentence": "The cat is black.",
+      "related_signs": [
+        "WHITE",
+        "DARK",
+        "COLOR"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/black.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 103,
+      "word": "WHITE",
+      "language": "ASL",
+      "category": "Colors",
+      "tags": [
+        "asl",
+        "black",
+        "color",
+        "colors",
+        "light",
+        "white"
+      ],
+      "meaning": "Lightest color.",
+      "hand_position": "W-hand at chest, pull outward.",
+      "movement": "Pull W-hand outward from chest.",
+      "example_sentence": "The paper is white.",
+      "related_signs": [
+        "BLACK",
+        "LIGHT",
+        "COLOR"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/white.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 104,
+      "word": "TODAY",
+      "language": "ASL",
+      "category": "Time",
+      "tags": [
+        "asl",
+        "day",
+        "now",
+        "time",
+        "today",
+        "yesterday"
+      ],
+      "meaning": "The present day.",
+      "hand_position": "Both flat hands at chest, move downward together.",
+      "movement": "Move both flat hands down from chest.",
+      "example_sentence": "Today is Monday.",
+      "related_signs": [
+        "NOW",
+        "DAY",
+        "YESTERDAY"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/today.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 105,
+      "word": "TOMORROW",
+      "language": "ASL",
+      "category": "Time",
+      "tags": [
+        "asl",
+        "future",
+        "later",
+        "time",
+        "today",
+        "tomorrow"
+      ],
+      "meaning": "The day after today.",
+      "hand_position": "A-hand at cheek, move forward and arc down.",
+      "movement": "Move A-hand from cheek forward in arc.",
+      "example_sentence": "I will go tomorrow.",
+      "related_signs": [
+        "TODAY",
+        "FUTURE",
+        "LATER"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/tomorrow.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 106,
+      "word": "YESTERDAY",
+      "language": "ASL",
+      "category": "Time",
+      "tags": [
+        "asl",
+        "before",
+        "past",
+        "time",
+        "today",
+        "yesterday"
+      ],
+      "meaning": "The day before today.",
+      "hand_position": "A-hand at cheek, move backward and arc down.",
+      "movement": "Move A-hand from cheek backward in arc.",
+      "example_sentence": "I went yesterday.",
+      "related_signs": [
+        "TODAY",
+        "PAST",
+        "BEFORE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/yesterday.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 107,
+      "word": "NOW",
+      "language": "ASL",
+      "category": "Time",
+      "tags": [
+        "asl",
+        "immediate",
+        "now",
+        "time",
+        "today"
+      ],
+      "meaning": "At the present moment.",
+      "hand_position": "Y-hands, drop downward sharply.",
+      "movement": "Drop both Y-hands downward.",
+      "example_sentence": "I want it now.",
+      "related_signs": [
+        "TODAY",
+        "IMMEDIATE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/now.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 108,
+      "word": "MORNING",
+      "language": "ASL",
+      "category": "Time",
+      "tags": [
+        "afternoon",
+        "asl",
+        "day",
+        "morning",
+        "night",
+        "time"
+      ],
+      "meaning": "Early part of the day.",
+      "hand_position": "Flat hand at stomach, arc up to chest.",
+      "movement": "Arc flat hand upward from stomach to chest.",
+      "example_sentence": "I wake up in the morning.",
+      "related_signs": [
+        "NIGHT",
+        "AFTERNOON",
+        "DAY"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/morning.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 109,
+      "word": "NIGHT",
+      "language": "ASL",
+      "category": "Time",
+      "tags": [
+        "asl",
+        "dark",
+        "evening",
+        "morning",
+        "night",
+        "time"
+      ],
+      "meaning": "Dark time of day.",
+      "hand_position": "Bent hand over face, close fingers.",
+      "movement": "Bend hand over face and close fingers like night falling.",
+      "example_sentence": "The stars come out at night.",
+      "related_signs": [
+        "MORNING",
+        "EVENING",
+        "DARK"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/night.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 110,
+      "word": "HELLO",
+      "language": "BSL",
+      "category": "Greetings",
+      "tags": [
+        "bsl",
+        "goodbye",
+        "greetings",
+        "hello",
+        "hi"
+      ],
+      "meaning": "Greeting in British Sign Language.",
+      "hand_position": "Flat hand at temple, move outward in small arc.",
+      "movement": "Move flat hand outward from temple.",
+      "example_sentence": "Hello, how are you?",
+      "related_signs": [
+        "GOODBYE",
+        "HI"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/hello.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 111,
+      "word": "THANK-YOU",
+      "language": "BSL",
+      "category": "Common phrases",
+      "tags": [
+        "bsl",
+        "common",
+        "phrases",
+        "please",
+        "sorry",
+        "thank",
+        "you"
+      ],
+      "meaning": "Gratitude in BSL.",
+      "hand_position": "Flat hand at chin, move forward and down.",
+      "movement": "Move flat hand from chin forward.",
+      "example_sentence": "Thank you very much.",
+      "related_signs": [
+        "PLEASE",
+        "SORRY"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/thank_you.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 112,
+      "word": "GOOD",
+      "language": "BSL",
+      "category": "Common phrases",
+      "tags": [
+        "bad",
+        "bsl",
+        "common",
+        "fine",
+        "good",
+        "phrases"
+      ],
+      "meaning": "Positive quality in BSL.",
+      "hand_position": "Flat hand at mouth, move down to chest.",
+      "movement": "Move flat hand from mouth to chest.",
+      "example_sentence": "That is good.",
+      "related_signs": [
+        "BAD",
+        "FINE"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/good.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 113,
+      "word": "HELLO",
+      "language": "ISL",
+      "category": "Greetings",
+      "tags": [
+        "goodbye",
+        "greetings",
+        "hello",
+        "hi",
+        "isl"
+      ],
+      "meaning": "Greeting in Indian Sign Language.",
+      "hand_position": "Both hands wave with palms outward.",
+      "movement": "Wave both hands with palms facing outward.",
+      "example_sentence": "Hello, namaste!",
+      "related_signs": [
+        "GOODBYE",
+        "HI"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/hello.png",
+      "asset_type": "educational reference card"
+    },
+    {
+      "id": 114,
+      "word": "THANK-YOU",
+      "language": "ISL",
+      "category": "Common phrases",
+      "tags": [
+        "common",
+        "isl",
+        "phrases",
+        "please",
+        "sorry",
+        "thank",
+        "you"
+      ],
+      "meaning": "Gratitude in ISL.",
+      "hand_position": "Flat hand at lips, move forward.",
+      "movement": "Move flat hand from lips forward.",
+      "example_sentence": "Thank you, dhanyavaad.",
+      "related_signs": [
+        "PLEASE",
+        "SORRY"
+      ],
+      "confidence_threshold": 0.75,
+      "asset": "assets/signs/thank_you.png",
+      "asset_type": "educational reference card"
+    }
+  ],
+  "alphabet": [
+    {
+      "symbol": "A",
+      "asset": "assets/alphabet/a.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "B",
+      "asset": "assets/alphabet/b.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "C",
+      "asset": "assets/alphabet/c.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "D",
+      "asset": "assets/alphabet/d.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "E",
+      "asset": "assets/alphabet/e.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "F",
+      "asset": "assets/alphabet/f.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "G",
+      "asset": "assets/alphabet/g.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "H",
+      "asset": "assets/alphabet/h.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "I",
+      "asset": "assets/alphabet/i.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "J",
+      "asset": "assets/alphabet/j.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "K",
+      "asset": "assets/alphabet/k.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "L",
+      "asset": "assets/alphabet/l.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "M",
+      "asset": "assets/alphabet/m.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "N",
+      "asset": "assets/alphabet/n.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "O",
+      "asset": "assets/alphabet/o.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "P",
+      "asset": "assets/alphabet/p.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "Q",
+      "asset": "assets/alphabet/q.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "R",
+      "asset": "assets/alphabet/r.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "S",
+      "asset": "assets/alphabet/s.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "T",
+      "asset": "assets/alphabet/t.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "U",
+      "asset": "assets/alphabet/u.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "V",
+      "asset": "assets/alphabet/v.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "W",
+      "asset": "assets/alphabet/w.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "X",
+      "asset": "assets/alphabet/x.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "Y",
+      "asset": "assets/alphabet/y.png",
+      "type": "fingerspelling reference"
+    },
+    {
+      "symbol": "Z",
+      "asset": "assets/alphabet/z.png",
+      "type": "fingerspelling reference"
+    }
+  ],
+  "numbers": [
+    {
+      "number": 0,
+      "asset": "assets/numbers/0.png",
+      "type": "number reference"
+    },
+    {
+      "number": 1,
+      "asset": "assets/numbers/1.png",
+      "type": "number reference"
+    },
+    {
+      "number": 2,
+      "asset": "assets/numbers/2.png",
+      "type": "number reference"
+    },
+    {
+      "number": 3,
+      "asset": "assets/numbers/3.png",
+      "type": "number reference"
+    },
+    {
+      "number": 4,
+      "asset": "assets/numbers/4.png",
+      "type": "number reference"
+    },
+    {
+      "number": 5,
+      "asset": "assets/numbers/5.png",
+      "type": "number reference"
+    },
+    {
+      "number": 6,
+      "asset": "assets/numbers/6.png",
+      "type": "number reference"
+    },
+    {
+      "number": 7,
+      "asset": "assets/numbers/7.png",
+      "type": "number reference"
+    },
+    {
+      "number": 8,
+      "asset": "assets/numbers/8.png",
+      "type": "number reference"
+    },
+    {
+      "number": 9,
+      "asset": "assets/numbers/9.png",
+      "type": "number reference"
+    }
+  ],
+  "phrases": [
+    {
+      "phrase": "How are you?",
+      "key": "HOW-ARE-YOU",
+      "asset": "assets/phrases/how_are_you.png",
+      "description": "A common conversational greeting. In natural ASL, multi-sign phrases are produced as a sequence rather than as one literal English word.",
+      "type": "phrase reference"
+    },
+    {
+      "phrase": "Thank you",
+      "key": "THANK-YOU",
+      "asset": "assets/phrases/thank_you.png",
+      "description": "A polite expression of gratitude.",
+      "type": "phrase reference"
+    },
+    {
+      "phrase": "Good morning",
+      "key": "GOOD-MORNING",
+      "asset": "assets/phrases/good_morning.png",
+      "description": "A greeting used at the start of the day.",
+      "type": "phrase reference"
+    },
+    {
+      "phrase": "Good night",
+      "key": "GOOD-NIGHT",
+      "asset": "assets/phrases/good_night.png",
+      "description": "A farewell or bedtime greeting.",
+      "type": "phrase reference"
+    },
+    {
+      "phrase": "Nice to meet you",
+      "key": "NICE-TO-MEET-YOU",
+      "asset": "assets/phrases/nice_to_meet_you.png",
+      "description": "A polite introduction when meeting someone for the first time.",
+      "type": "phrase reference"
+    },
+    {
+      "phrase": "See you later",
+      "key": "SEE-YOU-LATER",
+      "asset": "assets/phrases/see_you_later.png",
+      "description": "A casual farewell indicating a future meeting.",
+      "type": "phrase reference"
+    },
+    {
+      "phrase": "What is your name?",
+      "key": "WHAT-IS-YOUR-NAME",
+      "asset": "assets/phrases/what_is_your_name.png",
+      "description": "A question used to learn someone\u2019s name.",
+      "type": "phrase reference"
+    },
+    {
+      "phrase": "My name is...",
+      "key": "MY-NAME-IS",
+      "asset": "assets/phrases/my_name_is.png",
+      "description": "A phrase used when introducing your name.",
+      "type": "phrase reference"
+    },
+    {
+      "phrase": "I need help",
+      "key": "I-NEED-HELP",
+      "asset": "assets/phrases/i_need_help.png",
+      "description": "A useful assistance phrase.",
+      "type": "phrase reference"
+    },
+    {
+      "phrase": "I do not understand",
+      "key": "I-DONT-UNDERSTAND",
+      "asset": "assets/phrases/i_dont_understand.png",
+      "description": "A phrase for communicating that clarification is needed.",
+      "type": "phrase reference"
+    },
+    {
+      "phrase": "Please help me",
+      "key": "PLEASE-HELP-ME",
+      "asset": "assets/phrases/please_help_me.png",
+      "description": "A polite request for assistance.",
+      "type": "phrase reference"
+    },
+    {
+      "phrase": "Where is the bathroom?",
+      "key": "WHERE-IS-BATHROOM",
+      "asset": "assets/phrases/where_is_bathroom.png",
+      "description": "A practical location question.",
+      "type": "phrase reference"
+    }
+  ]
+}

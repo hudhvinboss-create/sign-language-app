@@ -1,0 +1,23 @@
+{
+  "version": "2.0",
+  "generated": "2026-09-07",
+  "description": "Expanded educational asset pack for Sign Language Translator",
+  "counts": {
+    "database_signs": 114,
+    "alphabet": 26,
+    "numbers": 10,
+    "phrases": 12
+  },
+  "directories": {
+    "signs": "assets/signs",
+    "alphabet": "assets/alphabet",
+    "numbers": "assets/numbers",
+    "phrases": "assets/phrases",
+    "info": "assets/info",
+    "icons": "assets/icons"
+  },
+  "notes": [
+    "PNG files are educational reference cards, not motion-captured training samples.",
+    "Exact sign production should be verified with authoritative language resources."
+  ]
+}
