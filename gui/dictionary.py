@@ -4,7 +4,7 @@ Searchable dictionary with categories.
 """
 import tkinter as tk
 from tkinter import ttk, font
-from PIL import ImageTk
+from PIL import Image, ImageTk
 from utils.image_generator import SignImageGenerator
 
 class DictionaryFrame(tk.Frame):

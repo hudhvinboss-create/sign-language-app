@@ -5,6 +5,7 @@ Upload and translate sign language videos.
 import tkinter as tk
 from tkinter import ttk, filedialog, font
 import cv2
+from PIL import Image, ImageTk
 import threading
 import time
 import os

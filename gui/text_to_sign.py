@@ -4,7 +4,7 @@ Converts typed text into sign language demonstrations.
 """
 import tkinter as tk
 from tkinter import ttk, font
-from PIL import ImageTk
+from PIL import Image, ImageTk
 from utils.image_generator import SignImageGenerator
 from utils.tts_engine import TTSEngine
 
