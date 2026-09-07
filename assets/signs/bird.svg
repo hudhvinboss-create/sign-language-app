@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+<rect width="900" height="600" rx="28" fill="#f7f9fc"/>
+<rect x="25" y="25" width="850" height="550" rx="22" fill="white" stroke="#dbe3ee" stroke-width="3"/>
+<circle cx="790" cy="100" r="55" fill="#e8f1ff"/>
+<path d="M775 125 C758 109 755 89 765 78 L774 94 L774 61 C774 54 784 54 784 61 L784 91 L790 56 C791 49 801 50 801 57 L797 92 L805 62 C807 55 817 58 816 65 L807 100 L817 78 C820 71 829 75 826 82 L814 112 C808 128 791 135 775 125Z" fill="none" stroke="#2864d7" stroke-width="5" stroke-linejoin="round"/>
+<text x="70" y="95" font-family="sans-serif" font-size="42" font-weight="800" fill="#17345f">BIRD</text>
+<text x="70" y="135" font-family="sans-serif" font-size="18" fill="#5c6b7d">ASL • Animals</text>
+<text x="70" y="170" font-family="sans-serif" font-size="15" fill="#8a97a8">REFERENCE CARD • NOT A TRAINING IMAGE</text>
+<text x="70" y="220" font-family="sans-serif" font-size="22" font-weight="700">Meaning</text><text x="70" y="250" font-family="sans-serif" font-size="19">Flying animal.</text><text x="70" y="303" font-family="sans-serif" font-size="22" font-weight="700">Hand position</text><text x="70" y="333" font-family="sans-serif" font-size="19">Thumbs at armpits, flap hands like wings.</text><text x="70" y="386" font-family="sans-serif" font-size="22" font-weight="700">Movement</text><text x="70" y="416" font-family="sans-serif" font-size="19">Flap hands at sides like bird wings.</text><text x="70" y="469" font-family="sans-serif" font-size="22" font-weight="700">Example</text><text x="70" y="499" font-family="sans-serif" font-size="19">The bird is flying.</text>
+</svg>

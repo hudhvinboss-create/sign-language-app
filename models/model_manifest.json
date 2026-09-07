@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "runtime_download": true,
+  "models": [
+    {
+      "name": "MediaPipe hand landmarker",
+      "status": "downloaded at runtime when required",
+      "bundled": false
+    }
+  ],
+  "note": "Large model binaries are intentionally not bundled in this asset-fill package."
+}
