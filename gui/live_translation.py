@@ -25,6 +25,15 @@ class LiveTranslationFrame(tk.Frame):
         self.max_history = 10
         self.current_tk_image = None
 
+        # Run hand/pose detection every Nth frame instead of every frame.
+        # Detection is the expensive part of the loop; raise this to 2 or 3
+        # if the feed still feels laggy (camera capture stays full-rate,
+        # only detection+recognition is skipped on the frames in between).
+        self.detect_every_n_frames = 1
+        self._last_annotated_frame = None
+        self._last_hands_data = {'landmarks': [], 'handedness': [], 'count': 0}
+        self._last_pose_data = {'landmarks': None}
+
         self._setup_ui()
 
     def _setup_ui(self):
@@ -183,8 +192,18 @@ class LiveTranslationFrame(tk.Frame):
 
             frame_count += 1
 
-            # Detect hands and pose
-            annotated_frame, hands_data, pose_data = self.detector.detect_all(frame)
+            # Detect hands and pose (skip on some frames if configured, and
+            # reuse the last known result so recognition/sentence-building
+            # still has data to work with each loop).
+            if frame_count % self.detect_every_n_frames == 0:
+                annotated_frame, hands_data, pose_data = self.detector.detect_all(frame)
+                self._last_annotated_frame = annotated_frame
+                self._last_hands_data = hands_data
+                self._last_pose_data = pose_data
+            else:
+                annotated_frame = frame
+                hands_data = self._last_hands_data
+                pose_data = self._last_pose_data
 
             # Extract features
             features = self.feature_extractor.get_feature_vector(hands_data)
@@ -208,12 +227,17 @@ class LiveTranslationFrame(tk.Frame):
                 sign, confidence
             )
 
-            # Update UI (every 3 frames to reduce load)
+            # Update UI (every 3 frames to reduce load).
+            # IMPORTANT: this thread must never touch Tk widgets directly --
+            # Tkinter is not thread-safe. self.after(0, ...) schedules the
+            # actual widget updates to run on the main/GUI thread instead.
             if frame_count % 3 == 0:
-                self._update_ui(annotated_frame, sign, confidence, sentence, 
-                              hands_data.get('count', 0))
+                self.after(0, self._update_ui, annotated_frame, sign, confidence,
+                           sentence, hands_data.get('count', 0))
 
-            time.sleep(0.01)  # Small delay
+            # No extra sleep needed -- detect_all() + self.camera.read_frame()
+            # already pace the loop to the camera/model's real throughput.
+            # A fixed sleep here only adds latency on top of that.
 
     def _update_ui(self, frame, sign, confidence, sentence, hand_count):
         from PIL import Image, ImageTk

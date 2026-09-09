@@ -22,10 +22,15 @@ def _has_avx():
         return False
 
 class HandDetector:
-    def __init__(self, max_hands=2, detection_confidence=0.5, tracking_confidence=0.5):
+    def __init__(self, max_hands=2, detection_confidence=0.5, tracking_confidence=0.5,
+                 detect_scale=0.6):
         self.max_hands = max_hands
         self.detection_confidence = detection_confidence
         self.tracking_confidence = tracking_confidence
+        # Frame is resized to this fraction before mediapipe_new inference
+        # (speed win; landmarks are normalized so accuracy is unaffected).
+        # Set to 1.0 to disable. Has no effect on the old/legacy or opencv modes.
+        self.detect_scale = detect_scale
         self.mode = "unknown"
 
         has_avx = _has_avx()
@@ -76,8 +81,10 @@ class HandDetector:
             from mediapipe.tasks.python.vision import HandLandmarker, HandLandmarkerOptions
             from mediapipe.tasks.python import BaseOptions
             from mediapipe import Image as MPImage
+            from mediapipe import ImageFormat as MPImageFormat
 
             self.MPImage = MPImage
+            self.MPImageFormat = MPImageFormat  # NOTE: top-level, not MPImage.ImageFormat
             models_dir = os.path.join(os.path.dirname(__file__), '..', 'models')
             os.makedirs(models_dir, exist_ok=True)
 
@@ -166,8 +173,12 @@ class HandDetector:
         return annotated, landmarks_list, handedness_list
 
     def _detect_hands_new(self, frame):
-        rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        mp_image = self.MPImage(image_format=self.MPImage.ImageFormat.SRGB, data=rgb_frame)
+        # Detect on a downscaled copy for speed; landmarks are normalized
+        # (0-1) so they still map correctly onto the full-res frame below.
+        detect_frame = cv2.resize(frame, None, fx=self.detect_scale, fy=self.detect_scale) \
+            if self.detect_scale != 1.0 else frame
+        rgb_frame = cv2.cvtColor(detect_frame, cv2.COLOR_BGR2RGB)
+        mp_image = self.MPImage(image_format=self.MPImageFormat.SRGB, data=rgb_frame)
         results = self.hand_landmarker.detect(mp_image)
         annotated = frame.copy()
         landmarks_list = []
@@ -329,8 +340,10 @@ class HandDetector:
         return annotated, pose_landmarks
 
     def _detect_pose_new(self, frame):
-        rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        mp_image = self.MPImage(image_format=self.MPImage.ImageFormat.SRGB, data=rgb_frame)
+        detect_frame = cv2.resize(frame, None, fx=self.detect_scale, fy=self.detect_scale) \
+            if self.detect_scale != 1.0 else frame
+        rgb_frame = cv2.cvtColor(detect_frame, cv2.COLOR_BGR2RGB)
+        mp_image = self.MPImage(image_format=self.MPImageFormat.SRGB, data=rgb_frame)
         results = self.pose_landmarker.detect(mp_image)
         annotated = frame.copy()
         pose_landmarks = None
