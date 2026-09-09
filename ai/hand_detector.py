@@ -8,7 +8,13 @@ import os
 import subprocess
 
 def _has_avx():
-    """Check if CPU supports AVX instructions."""
+    """Check if CPU supports AVX instructions (cross-platform)."""
+    try:
+        import cpuinfo
+        flags = cpuinfo.get_cpu_info().get('flags', [])
+        return 'avx' in flags
+    except Exception:
+        pass
     try:
         with open('/proc/cpuinfo', 'r') as f:
             return 'avx' in f.read().lower()
