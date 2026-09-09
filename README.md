@@ -21,7 +21,7 @@ Before starting, make sure you have installed:
 Open a terminal for your operating system and run:
 
 ```bash
-git clone https://github.com/hudhvinboss-create/sign-language-app.git
+git clone https://github.com/hudhvinboss-create/sign-language-app.git sign-language-app
 ```
 
 ### 2. Navigate to the project folder
