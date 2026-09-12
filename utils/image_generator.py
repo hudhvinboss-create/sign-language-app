@@ -1,17 +1,9 @@
 """
 Sign Language Reference Image Loader.
 
-The Text -> Sign screen should display the real reference assets shipped with
-this project. The old implementation drew a fake hand made from rectangles,
-which produced the unwanted "brick" image and also did unnecessary drawing on
-Every translation.
-
-This module now:
-- loads assets/signs/<sign>.png when available
-- understands spaces and hyphens in sign names
-- caches loaded images for fast navigation
-- uses the database image_path when one is supplied
-- provides a lightweight text-only fallback when an asset is missing
+Text -> Sign always prefers the real project assets. Database image_path is
+only used as a final fallback so stale database paths cannot override the
+shipped sign images.
 """
 
 import os
@@ -28,7 +20,11 @@ class SignImageGenerator:
         self.body_font = self._find_font(15)
         self.small_font = self._find_font(12)
         self.project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-        self.sign_asset_dir = os.path.join(self.project_root, "assets", "signs")
+        self.asset_root = os.path.join(self.project_root, "assets")
+        self.sign_asset_dir = os.path.join(self.asset_root, "signs")
+        self.phrase_asset_dir = os.path.join(self.asset_root, "phrases")
+        self.alphabet_asset_dir = os.path.join(self.asset_root, "alphabet")
+        self.number_asset_dir = os.path.join(self.asset_root, "numbers")
 
     def _find_font(self, size, bold=False):
         names = [
@@ -57,25 +53,45 @@ class SignImageGenerator:
         return value
 
     def _candidate_paths(self, word, image_path=None):
-        candidates = []
+        """Build candidates in strict priority order.
 
+        Project assets always win. The database path is deliberately last so
+        an old or incorrect image_path cannot replace a real shipped asset.
+        """
+        candidates = []
+        name = self._normalise_name(word)
+
+        if name:
+            # Primary word/sign assets.
+            candidates.append(os.path.join(self.sign_asset_dir, f"{name}.png"))
+
+            # Dedicated phrase assets.
+            candidates.append(os.path.join(self.phrase_asset_dir, f"{name}.png"))
+
+            # Alphabet assets.
+            if len(name) == 1 and name.isalpha():
+                candidates.append(os.path.join(self.alphabet_asset_dir, f"{name}.png"))
+
+            # Number assets.
+            if name.isdigit():
+                candidates.append(os.path.join(self.number_asset_dir, f"{name}.png"))
+
+        # Database path is only a fallback after all canonical assets.
         if image_path:
             if os.path.isabs(image_path):
                 candidates.append(image_path)
             else:
                 candidates.append(os.path.join(self.project_root, image_path))
 
-        name = self._normalise_name(word)
-        if name:
-            candidates.extend([
-                os.path.join(self.sign_asset_dir, f"{name}.png"),
-                os.path.join(self.project_root, "alphabet", f"{name}.png")
-                if len(name) == 1 else "",
-                os.path.join(self.project_root, "numbers", f"{name}.png")
-                if name.isdigit() else "",
-            ])
-
-        return [path for path in candidates if path]
+        # Remove duplicates while preserving priority.
+        result = []
+        seen = set()
+        for path in candidates:
+            normalized = os.path.normcase(os.path.normpath(path))
+            if normalized not in seen:
+                seen.add(normalized)
+                result.append(path)
+        return result
 
     @lru_cache(maxsize=256)
     def _load_asset(self, path):
@@ -83,7 +99,6 @@ class SignImageGenerator:
             return None
         try:
             with Image.open(path) as source:
-                # Copy the image so the file handle can close immediately.
                 return source.convert("RGB").copy()
         except (OSError, ValueError):
             return None
@@ -96,12 +111,7 @@ class SignImageGenerator:
         return None
 
     def generate(self, word, hand_position="", movement="", meaning="", image_path=None):
-        """Load the real sign image, with a safe lightweight fallback.
-
-        No fake hand/rectangle is drawn anymore. If an asset exists, it is the
-        image shown by Text -> Sign. Missing assets get a clear informational
-        card instead of a misleading illustration.
-        """
+        """Load the real sign image with a safe lightweight fallback."""
         asset_path = self.find_asset(word, image_path)
         if asset_path:
             image = self._load_asset(asset_path)
