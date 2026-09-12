@@ -207,7 +207,7 @@ class LiveTranslationFrame(tk.Frame):
 
             # Extract features
             features = self.feature_extractor.get_feature_vector(hands_data)
-            finger_states = self.feature_extractor.extract_finger_states(
+            hand_curls = self.feature_extractor.extract_finger_curls(
                 hands_data.get('landmarks', [])
             )
 
@@ -217,9 +217,12 @@ class LiveTranslationFrame(tk.Frame):
                 if len(self.landmark_history) > self.max_history:
                     self.landmark_history.pop(0)
 
+            motion_features = self.feature_extractor.extract_motion_features(self.landmark_history)
+            motion_class = self.feature_extractor.classify_motion(motion_features)
+
             # Recognize sign
             sign, confidence, method = self.recognizer.recognize(
-                features, finger_states, None
+                features, hand_curls, motion_class
             )
 
             # Build sentence

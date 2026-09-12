@@ -9,7 +9,7 @@ from sklearn.ensemble import RandomForestClassifier
 import warnings
 
 class SignRecognizer:
-    def __init__(self, language="ASL", model_path=None):
+    def __init__(self, language="ASL", model_path=None, use_demo_model=False):
         self.language = language
         self.model = None
         self.label_map = {}
@@ -21,62 +21,76 @@ class SignRecognizer:
 
         if model_path and os.path.exists(model_path):
             self.load_model(model_path)
-        else:
-            # Initialize with a simple default model for demo
+        elif use_demo_model:
+            # This fits a RandomForest on pure random noise (see below) --
+            # it has never seen a real gesture. It's useful for exercising
+            # the pipeline end-to-end, but it can actively hurt recognition
+            # quality: 5 of its 12 fake classes are the numbers ONE-FIVE, so
+            # it can add extra numbers-bias on top of real predictions.
+            # Left OFF by default; pass use_demo_model=True to re-enable,
+            # or load_model(...) with a model trained on real gesture data.
             self._init_default_model()
+
+    # Curl-ratio bands used by the sign definitions below. These are ranges,
+    # not exact values, which is the main fix: the old code required an
+    # *exact* binary match, so any two signs with the same 0/1 pattern
+    # (FIVE vs C, FOUR vs B, FIVE vs HELLO/THANK-YOU) were indistinguishable.
+    EXTENDED = (0.55, 1.5)   # finger fully out straight
+    FOLDED = (0.0, 0.30)     # finger curled into the palm
+    CURLED = (0.25, 0.60)    # partially bent (e.g. a "C" shape)
 
     def _init_rule_based_signs(self):
         """
-        Define simple rule-based sign patterns.
-        Format: {sign_name: {finger_states: [...], description: ...}}
-        finger_states: [index, middle, ring, pinky, thumb] (1=extended, 0=folded)
+        Rule-based sign definitions using continuous curl ranges (from
+        FeatureExtractor.extract_finger_curls) instead of exact binary
+        patterns, plus an optional thumb position and required motion state.
+        finger_curls order: [index, middle, ring, pinky].
         """
+        E, F, C = self.EXTENDED, self.FOLDED, self.CURLED
         return {
             "ONE": {
-                "finger_states": [[1, 0, 0, 0, 0]],
-                "description": "Index finger extended"
+                "finger_curls": [E, F, F, F], "thumb_curl": F,
+                "description": "Index finger extended",
             },
             "TWO": {
-                "finger_states": [[1, 1, 0, 0, 0]],
-                "description": "Index and middle extended"
+                "finger_curls": [E, E, F, F], "thumb_curl": F,
+                "description": "Index and middle extended",
             },
             "THREE": {
-                "finger_states": [[1, 1, 1, 0, 0]],
-                "description": "Three fingers extended"
+                "finger_curls": [E, E, E, F], "thumb_curl": F,
+                "description": "Three fingers extended",
             },
             "FOUR": {
-                "finger_states": [[1, 1, 1, 1, 0]],
-                "description": "Four fingers extended"
+                "finger_curls": [E, E, E, E], "thumb_curl": F, "thumb_pos": "tucked",
+                "description": "Four fingers extended, thumb tucked",
             },
             "FIVE": {
-                "finger_states": [[1, 1, 1, 1, 1]],
-                "description": "All fingers extended"
+                "finger_curls": [E, E, E, E], "thumb_curl": E, "thumb_pos": "side",
+                "description": "All fingers and thumb extended",
             },
             "A": {
-                "finger_states": [[0, 0, 0, 0, 1]],
-                "description": "Fist with thumb out"
+                "finger_curls": [F, F, F, F], "thumb_curl": E, "thumb_pos": "side",
+                "description": "Fist with thumb out to the side",
             },
             "B": {
-                "finger_states": [[1, 1, 1, 1, 0]],
-                "description": "Flat hand, thumb tucked"
+                "finger_curls": [E, E, E, E], "thumb_curl": F, "thumb_pos": "across",
+                "description": "Flat hand, thumb folded across the palm",
             },
             "C": {
-                "finger_states": [[1, 1, 1, 1, 1]],  # Approximation
-                "description": "Curved hand"
+                "finger_curls": [C, C, C, C], "thumb_curl": C,
+                "description": "Curved hand (partial curl on all fingers)",
             },
             "HELLO": {
-                "finger_states": [[1, 1, 1, 1, 1]],
-                "motion": "wave",
-                "description": "Open hand waving"
+                "finger_curls": [E, E, E, E], "thumb_curl": E, "motion": "moving",
+                "description": "Open hand, waving",
             },
             "THANK-YOU": {
-                "finger_states": [[1, 1, 1, 1, 1]],
-                "motion": "chin_touch",
-                "description": "Hand from chin outward"
+                "finger_curls": [E, E, E, E], "thumb_curl": E, "motion": "moving",
+                "description": "Open hand moving outward from chin",
             },
             "I-LOVE-YOU": {
-                "finger_states": [[1, 0, 0, 1, 1]],  # Index and pinky extended, thumb out
-                "description": "I-L-Y handshape"
+                "finger_curls": [E, F, F, E], "thumb_curl": E, "thumb_pos": "side",
+                "description": "Index, pinky, and thumb extended",
             },
         }
 
@@ -131,9 +145,11 @@ class SignRecognizer:
             pickle.dump(data, f)
         print(f"Model saved to {model_path}")
 
-    def recognize(self, features, finger_states=None, motion_features=None):
+    def recognize(self, features, hand_curls=None, motion_class="static"):
         """
         Recognize sign from features.
+        hand_curls: output of FeatureExtractor.extract_finger_curls()
+        motion_class: "static" or "moving", from FeatureExtractor.classify_motion()
         Returns: (sign_name, confidence, method)
         """
         results = []
@@ -154,8 +170,8 @@ class SignRecognizer:
                 pass
 
         # Try rule-based fallback
-        if finger_states and len(finger_states) > 0:
-            rule_result = self._rule_based_recognize(finger_states, motion_features)
+        if hand_curls and len(hand_curls) > 0:
+            rule_result = self._rule_based_recognize(hand_curls, motion_class)
             if rule_result:
                 results.append(rule_result)
 
@@ -166,25 +182,65 @@ class SignRecognizer:
 
         return ("UNKNOWN", 0.0, "none")
 
-    def _rule_based_recognize(self, finger_states, motion_features=None):
-        """Rule-based recognition using finger states."""
-        if not finger_states or len(finger_states) == 0:
+    def _rule_based_recognize(self, hand_curls, motion_class="static"):
+        """
+        Score every defined sign against the primary hand's curl profile and
+        return the best match -- but only if it's not a genuine tie. Ties are
+        reported as UNKNOWN rather than silently picking whichever sign
+        happens to be defined first (that silent tie-break, always favoring
+        numbers since they were listed first, was the original bug).
+        """
+        if not hand_curls or len(hand_curls) == 0:
             return None
 
-        hand_state = finger_states[0]  # Primary hand
+        hand = hand_curls[0]  # Primary hand
+        curls = hand['curls']
+        thumb_curl = hand['thumb_curl']
+        thumb_pos = hand['thumb_pos']
 
-        best_match = None
-        best_score = 0
-
+        candidates = []
         for sign_name, rules in self.rule_based_signs.items():
-            expected = rules.get("finger_states", [[]])[0]
-            if len(expected) == len(hand_state):
-                score = sum(1 for a, b in zip(expected, hand_state) if a == b) / len(expected)
-                if score > best_score and score >= 0.8:
-                    best_score = score
-                    best_match = (sign_name, score, "rule-based")
+            required_motion = rules.get("motion", "static")
+            if required_motion != motion_class:
+                continue  # e.g. skip HELLO/THANK-YOU entirely while hand is still
 
-        return best_match
+            finger_ranges = rules["finger_curls"]
+            if len(finger_ranges) != len(curls):
+                continue
+
+            matches = 0
+            total = len(finger_ranges) + 1  # + thumb curl
+            for curl, (lo, hi) in zip(curls, finger_ranges):
+                if lo <= curl <= hi:
+                    matches += 1
+
+            thumb_lo, thumb_hi = rules["thumb_curl"]
+            if thumb_lo <= thumb_curl <= thumb_hi:
+                matches += 1
+
+            score = matches / total
+
+            required_thumb_pos = rules.get("thumb_pos")
+            if required_thumb_pos and thumb_pos != required_thumb_pos:
+                # Soft penalty, not a hard reject -- thumb_pos is a coarse
+                # heuristic and shouldn't veto an otherwise strong match.
+                score -= 0.15
+
+            candidates.append((sign_name, max(score, 0.0)))
+
+        if not candidates:
+            return None
+
+        candidates.sort(key=lambda x: x[1], reverse=True)
+        best_name, best_score = candidates[0]
+
+        if best_score < 0.8:
+            return None
+
+        if len(candidates) > 1 and abs(candidates[1][1] - best_score) < 1e-6:
+            return None  # genuine tie -- be honest instead of guessing
+
+        return (best_name, best_score, "rule-based")
 
     def get_supported_signs(self):
         """Get list of supported signs."""

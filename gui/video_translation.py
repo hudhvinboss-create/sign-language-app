@@ -276,7 +276,7 @@ class VideoTranslationFrame(tk.Frame):
                 annotated_frame, hands_data, pose_data = self.detector.detect_all(frame)
 
                 features = self.feature_extractor.get_feature_vector(hands_data)
-                finger_states = self.feature_extractor.extract_finger_states(
+                hand_curls = self.feature_extractor.extract_finger_curls(
                     hands_data.get('landmarks', [])
                 )
 
@@ -285,8 +285,11 @@ class VideoTranslationFrame(tk.Frame):
                     if len(landmark_history) > max_history:
                         landmark_history.pop(0)
 
+                motion_features = self.feature_extractor.extract_motion_features(landmark_history)
+                motion_class = self.feature_extractor.classify_motion(motion_features)
+
                 sign, confidence, method = self.recognizer.recognize(
-                    features, finger_states, None
+                    features, hand_curls, motion_class
                 )
 
                 is_confirmed, confirmed_sign, sentence = self.sentence_builder.add_sign(
