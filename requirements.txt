@@ -4,6 +4,6 @@ numpy>=1.26.0
 pillow>=10.0.0
 scikit-learn>=1.4.0
 pyttsx3>=2.90
-cairosvg>=2.7.1
+resvg_py>=0.5.0
 
 py-cpuinfo>=9.0.0
