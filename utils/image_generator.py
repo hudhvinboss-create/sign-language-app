@@ -1,10 +1,8 @@
 """
 Sign Language Reference Image Loader.
 
-Text -> Sign renders the project's SVG reference artwork with resvg_py.
-resvg_py ships a native renderer for Windows and does not require the system
-Cairo DLL. Legacy PNG cards are intentionally ignored so the old brick image
-can never be selected.
+Text -> Sign uses SVG reference artwork and never falls back to the old
+legacy PNG placeholder cards.
 """
 
 import io
@@ -56,39 +54,40 @@ class SignImageGenerator:
     def _normalise_name(self, word):
         value = str(word or "").strip().lower()
         value = value.replace("'", "").replace("’", "")
-        value = value.replace("-", "_").replace(" ", "_")
         return value
 
     def _candidate_paths(self, word, image_path=None):
         candidates = []
-        name = self._normalise_name(word)
+        raw = self._normalise_name(word)
+        underscore = raw.replace("-", "_").replace(" ", "_")
+        hyphen = raw.replace(" ", "-").replace("_", "-")
 
-        if name:
-            # ONLY SVG files are accepted. PNG files in this project are legacy
-            # cards and may contain the unwanted brick/placeholder artwork.
-            if len(name) == 1 and name.isalpha():
-                candidates.append(os.path.join(self.alphabet_asset_dir, f"{name}.svg"))
-            elif name.isdigit():
-                candidates.append(os.path.join(self.number_asset_dir, f"{name}.svg"))
-            elif "_" in name:
-                candidates.extend([
-                    os.path.join(self.phrase_asset_dir, f"{name}.svg"),
-                    os.path.join(self.sign_asset_dir, f"{name}.svg"),
-                ])
+        if raw:
+            names = []
+            for name in (raw, underscore, hyphen):
+                if name and name not in names:
+                    names.append(name)
+
+            if len(underscore) == 1 and underscore.isalpha():
+                for name in names:
+                    candidates.append(os.path.join(self.alphabet_asset_dir, f"{name}.svg"))
+            elif underscore.isdigit():
+                for name in names:
+                    candidates.append(os.path.join(self.number_asset_dir, f"{name}.svg"))
+            elif "_" in underscore or "-" in raw or " " in raw:
+                for name in names:
+                    candidates.append(os.path.join(self.phrase_asset_dir, f"{name}.svg"))
+                    candidates.append(os.path.join(self.sign_asset_dir, f"{name}.svg"))
             else:
-                candidates.extend([
-                    os.path.join(self.sign_asset_dir, f"{name}.svg"),
-                    os.path.join(self.phrase_asset_dir, f"{name}.svg"),
-                ])
+                for name in names:
+                    candidates.append(os.path.join(self.sign_asset_dir, f"{name}.svg"))
+                    candidates.append(os.path.join(self.phrase_asset_dir, f"{name}.svg"))
 
-        # Database image paths are allowed only when they point to an SVG.
         if image_path:
             if os.path.isabs(image_path):
-                candidate = image_path
+                candidates.append(image_path)
             else:
-                candidate = os.path.join(self.project_root, image_path)
-            if candidate.lower().endswith(".svg"):
-                candidates.append(candidate)
+                candidates.append(os.path.join(self.project_root, image_path))
 
         result = []
         seen = set()
@@ -105,26 +104,28 @@ class SignImageGenerator:
             return None
 
         try:
-            if not path.lower().endswith(".svg"):
-                return None
-            if resvg_py is None:
-                raise RuntimeError("SVG support is unavailable. Install resvg_py from requirements.txt.")
+            if path.lower().endswith(".svg"):
+                if resvg_py is None:
+                    raise RuntimeError("SVG renderer unavailable. Run: pip install resvg_py")
+                png_bytes = resvg_py.svg_to_bytes(
+                    svg_path=path,
+                    width=self.width,
+                    height=self.height,
+                )
+                with Image.open(io.BytesIO(png_bytes)) as source:
+                    return source.convert("RGB").copy()
 
-            png_bytes = resvg_py.svg_to_bytes(
-                svg_path=path,
-                width=self.width,
-                height=self.height,
-            )
-            with Image.open(io.BytesIO(png_bytes)) as source:
-                return source.convert("RGB").copy()
-        except (OSError, ValueError, RuntimeError) as exc:
+            # Deliberately do not load legacy PNG assets because they contain
+            # the old placeholder/brick artwork.
+            return None
+        except (OSError, ValueError, RuntimeError, TypeError) as exc:
             print(f"[Text->Sign] Could not load asset '{path}': {exc}")
             return None
 
     def find_asset(self, word, image_path=None):
         for path in self._candidate_paths(word, image_path):
             if os.path.isfile(path):
-                print(f"[Text->Sign] Using SVG sign asset: {path}")
+                print(f"[Text->Sign] Using sign asset: {path}")
                 return path
         return None
 
@@ -134,13 +135,11 @@ class SignImageGenerator:
             image = self._load_asset(asset_path)
             if image is not None:
                 return self._fit_image(image)
-
         return self._missing_asset_card(word, meaning)
 
     def _fit_image(self, image):
         image = image.copy()
         image.thumbnail((self.width - 16, self.height - 16), Image.Resampling.LANCZOS)
-
         canvas = Image.new("RGB", (self.width, self.height), (15, 15, 26))
         x = (self.width - image.width) // 2
         y = (self.height - image.height) // 2
@@ -148,18 +147,13 @@ class SignImageGenerator:
         return canvas
 
     def _missing_asset_card(self, word, meaning=""):
-        bg = (15, 15, 26)
-        accent = (233, 69, 96)
-        white = (255, 255, 255)
-        gray = (160, 160, 160)
-
-        image = Image.new("RGB", (self.width, self.height), bg)
+        image = Image.new("RGB", (self.width, self.height), (15, 15, 26))
         draw = ImageDraw.Draw(image)
-        draw.rectangle([0, 0, self.width, 6], fill=accent)
-        draw.text((20, 24), str(word or "UNKNOWN"), font=self.title_font, fill=accent)
-        draw.text((20, 78), "No SVG sign reference found.", font=self.body_font, fill=white)
-        draw.text((20, 108), "The legacy brick PNG is disabled.", font=self.small_font, fill=gray)
-        draw.rectangle([0, self.height - 6, self.width, self.height], fill=accent)
+        draw.rectangle([0, 0, self.width, 6], fill=(233, 69, 96))
+        draw.text((20, 24), str(word or "UNKNOWN"), font=self.title_font, fill=(233, 69, 96))
+        draw.text((20, 78), "No SVG sign reference found.", font=self.body_font, fill=(255, 255, 255))
+        draw.text((20, 108), "The legacy brick image is disabled.", font=self.small_font, fill=(160, 160, 160))
+        draw.rectangle([0, self.height - 6, self.width, self.height], fill=(233, 69, 96))
         return image
 
     def _wrap(self, text, max_chars):
