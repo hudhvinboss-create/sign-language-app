@@ -1,10 +1,10 @@
 """
 Sign Language Reference Image Loader.
 
-Text -> Sign prefers the project's SVG reference artwork. The old PNG files
-are legacy raster cards and can contain the unwanted brick/placeholder art.
-SVG assets are rendered to PIL images with CairoSVG, cached for speed, and
-then shown by Tkinter.
+Text -> Sign renders the project's SVG reference artwork with resvg_py.
+resvg_py ships a native renderer for Windows and does not require the system
+Cairo DLL. Legacy PNG cards are intentionally ignored so the old brick image
+can never be selected.
 """
 
 import io
@@ -14,9 +14,9 @@ from functools import lru_cache
 from PIL import Image, ImageDraw, ImageFont
 
 try:
-    import cairosvg
+    import resvg_py
 except ImportError:
-    cairosvg = None
+    resvg_py = None
 
 
 class SignImageGenerator:
@@ -64,37 +64,31 @@ class SignImageGenerator:
         name = self._normalise_name(word)
 
         if name:
-            # Dedicated directories are checked before the legacy signs folder.
+            # ONLY SVG files are accepted. PNG files in this project are legacy
+            # cards and may contain the unwanted brick/placeholder artwork.
             if len(name) == 1 and name.isalpha():
-                candidates.extend([
-                    os.path.join(self.alphabet_asset_dir, f"{name}.svg"),
-                    os.path.join(self.alphabet_asset_dir, f"{name}.png"),
-                ])
+                candidates.append(os.path.join(self.alphabet_asset_dir, f"{name}.svg"))
             elif name.isdigit():
-                candidates.extend([
-                    os.path.join(self.number_asset_dir, f"{name}.svg"),
-                    os.path.join(self.number_asset_dir, f"{name}.png"),
-                ])
+                candidates.append(os.path.join(self.number_asset_dir, f"{name}.svg"))
             elif "_" in name:
                 candidates.extend([
                     os.path.join(self.phrase_asset_dir, f"{name}.svg"),
-                    os.path.join(self.phrase_asset_dir, f"{name}.png"),
                     os.path.join(self.sign_asset_dir, f"{name}.svg"),
-                    os.path.join(self.sign_asset_dir, f"{name}.png"),
                 ])
             else:
                 candidates.extend([
                     os.path.join(self.sign_asset_dir, f"{name}.svg"),
-                    os.path.join(self.sign_asset_dir, f"{name}.png"),
                     os.path.join(self.phrase_asset_dir, f"{name}.svg"),
-                    os.path.join(self.phrase_asset_dir, f"{name}.png"),
                 ])
 
+        # Database image paths are allowed only when they point to an SVG.
         if image_path:
             if os.path.isabs(image_path):
-                candidates.append(image_path)
+                candidate = image_path
             else:
-                candidates.append(os.path.join(self.project_root, image_path))
+                candidate = os.path.join(self.project_root, image_path)
+            if candidate.lower().endswith(".svg"):
+                candidates.append(candidate)
 
         result = []
         seen = set()
@@ -111,20 +105,17 @@ class SignImageGenerator:
             return None
 
         try:
-            if path.lower().endswith(".svg"):
-                if cairosvg is None:
-                    raise RuntimeError(
-                        "SVG support is unavailable. Install requirements.txt (CairoSVG)."
-                    )
-                png_bytes = cairosvg.svg2png(
-                    url=path,
-                    output_width=self.width,
-                    output_height=self.height,
-                )
-                with Image.open(io.BytesIO(png_bytes)) as source:
-                    return source.convert("RGB").copy()
+            if not path.lower().endswith(".svg"):
+                return None
+            if resvg_py is None:
+                raise RuntimeError("SVG support is unavailable. Install resvg_py from requirements.txt.")
 
-            with Image.open(path) as source:
+            png_bytes = resvg_py.svg_to_bytes(
+                svg_path=path,
+                width=self.width,
+                height=self.height,
+            )
+            with Image.open(io.BytesIO(png_bytes)) as source:
                 return source.convert("RGB").copy()
         except (OSError, ValueError, RuntimeError) as exc:
             print(f"[Text->Sign] Could not load asset '{path}': {exc}")
@@ -133,7 +124,7 @@ class SignImageGenerator:
     def find_asset(self, word, image_path=None):
         for path in self._candidate_paths(word, image_path):
             if os.path.isfile(path):
-                print(f"[Text->Sign] Using sign asset: {path}")
+                print(f"[Text->Sign] Using SVG sign asset: {path}")
                 return path
         return None
 
@@ -166,8 +157,8 @@ class SignImageGenerator:
         draw = ImageDraw.Draw(image)
         draw.rectangle([0, 0, self.width, 6], fill=accent)
         draw.text((20, 24), str(word or "UNKNOWN"), font=self.title_font, fill=accent)
-        draw.text((20, 78), "No sign reference asset found.", font=self.body_font, fill=white)
-        draw.text((20, 108), "Add the matching SVG or PNG to assets.", font=self.small_font, fill=gray)
+        draw.text((20, 78), "No SVG sign reference found.", font=self.body_font, fill=white)
+        draw.text((20, 108), "The legacy brick PNG is disabled.", font=self.small_font, fill=gray)
         draw.rectangle([0, self.height - 6, self.width, self.height], fill=accent)
         return image
 
