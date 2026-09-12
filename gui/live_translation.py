@@ -7,6 +7,7 @@ from tkinter import ttk, font
 import cv2
 import threading
 import time
+from collections import deque, Counter
 from PIL import Image, ImageTk
 
 class LiveTranslationFrame(tk.Frame):
@@ -25,10 +26,11 @@ class LiveTranslationFrame(tk.Frame):
         self.max_history = 10
         self.current_tk_image = None
 
-        # Run hand/pose detection every Nth frame instead of every frame.
-        # Detection is the expensive part of the loop; raise this to 2 or 3
-        # if the feed still feels laggy (camera capture stays full-rate,
-        # only detection+recognition is skipped on the frames in between).
+        # Lightweight temporal smoothing, based on the common live-landmark
+        # recognizer pattern: do not let one noisy webcam frame immediately
+        # replace a stable prediction.
+        self.prediction_history = deque(maxlen=5)
+
         self.detect_every_n_frames = 1
         self._last_annotated_frame = None
         self._last_hands_data = {'landmarks': [], 'handedness': [], 'count': 0}
@@ -37,7 +39,6 @@ class LiveTranslationFrame(tk.Frame):
         self._setup_ui()
 
     def _setup_ui(self):
-        # Header
         header = tk.Frame(self, bg="#16213e", height=60)
         header.pack(fill=tk.X, pady=(0, 10))
         header.pack_propagate(False)
@@ -51,45 +52,39 @@ class LiveTranslationFrame(tk.Frame):
                         font=("Helvetica", 18, "bold"), bg="#16213e", fg="white")
         title.pack(side=tk.LEFT, padx=20, pady=10)
 
-        # Main content
         content = tk.Frame(self, bg="#1a1a2e")
         content.pack(fill=tk.BOTH, expand=True, padx=20, pady=10)
 
-        # Camera feed
         left_panel = tk.Frame(content, bg="#1a1a2e")
         left_panel.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
         self.camera_label = tk.Label(left_panel, bg="#0f0f1a", bd=2, relief=tk.SUNKEN)
         self.camera_label.pack(pady=10, padx=10)
 
-        # Camera controls
         controls = tk.Frame(left_panel, bg="#1a1a2e")
         controls.pack(pady=10)
 
-        self.start_btn = tk.Button(controls, text="▶ Start Camera", 
+        self.start_btn = tk.Button(controls, text="▶ Start Camera",
                                   font=("Helvetica", 12, "bold"),
                                   bg="#e94560", fg="white", width=15,
                                   command=self._start_camera)
         self.start_btn.pack(side=tk.LEFT, padx=5)
 
-        self.stop_btn = tk.Button(controls, text="⏹ Stop", 
+        self.stop_btn = tk.Button(controls, text="⏹ Stop",
                                  font=("Helvetica", 12, "bold"),
                                  bg="#533483", fg="white", width=15,
                                  command=self._stop_camera, state=tk.DISABLED)
         self.stop_btn.pack(side=tk.LEFT, padx=5)
 
-        # Right panel - Translation results
         right_panel = tk.Frame(content, bg="#16213e", width=380)
         right_panel.pack(side=tk.RIGHT, fill=tk.Y, padx=10, pady=10)
         right_panel.pack_propagate(False)
 
-        # Current sign image
         self.sign_image_label = tk.Label(right_panel, bg="#0f0f1a", bd=2, relief=tk.SUNKEN,
                                         text="No sign detected", fg="#888888",
                                         font=("Helvetica", 10))
         self.sign_image_label.pack(pady=(15, 5), padx=15)
 
-        # Current sign
         tk.Label(right_panel, text="Current Sign", font=("Helvetica", 14, "bold"),
                 bg="#16213e", fg="#e94560").pack(pady=(10, 5))
 
@@ -98,13 +93,11 @@ class LiveTranslationFrame(tk.Frame):
                                           bg="#16213e", fg="white")
         self.current_sign_label.pack(pady=5)
 
-        # Confidence
         self.confidence_label = tk.Label(right_panel, text="Confidence: 0%",
                                         font=("Helvetica", 12),
                                         bg="#16213e", fg="#a0a0a0")
         self.confidence_label.pack(pady=5)
 
-        # Meaning
         tk.Label(right_panel, text="Meaning", font=("Helvetica", 14, "bold"),
                 bg="#16213e", fg="#e94560").pack(pady=(15, 5))
 
@@ -116,7 +109,6 @@ class LiveTranslationFrame(tk.Frame):
         self.meaning_text.insert(tk.END, "Start camera to begin translation...")
         self.meaning_text.config(state=tk.DISABLED)
 
-        # Sentence
         tk.Label(right_panel, text="Sentence", font=("Helvetica", 14, "bold"),
                 bg="#16213e", fg="#e94560").pack(pady=(15, 5))
 
@@ -128,13 +120,11 @@ class LiveTranslationFrame(tk.Frame):
         self.sentence_text.insert(tk.END, "")
         self.sentence_text.config(state=tk.DISABLED)
 
-        # Status
         self.status_label = tk.Label(right_panel, text="Status: Ready",
                                     font=("Helvetica", 10),
                                     bg="#16213e", fg="#888888")
         self.status_label.pack(pady=(15, 5))
 
-        # Clear button
         tk.Button(right_panel, text="Clear Sentence", font=("Helvetica", 10),
                  bg="#533483", fg="white", command=self._clear_sentence).pack(pady=10)
 
@@ -152,6 +142,8 @@ class LiveTranslationFrame(tk.Frame):
         self.sentence_builder = SentenceBuilder(language=self.controller.language)
         self.image_gen = SignImageGenerator()
         self.camera = CameraCapture()
+        self.landmark_history.clear()
+        self.prediction_history.clear()
 
         if not self.camera.start():
             self.status_label.config(text="Status: Camera Error - Check permissions")
@@ -162,7 +154,6 @@ class LiveTranslationFrame(tk.Frame):
         self.stop_btn.config(state=tk.NORMAL)
         self.status_label.config(text="Status: Running")
 
-        # Start processing thread
         self.process_thread = threading.Thread(target=self._process_loop)
         self.process_thread.daemon = True
         self.process_thread.start()
@@ -174,15 +165,14 @@ class LiveTranslationFrame(tk.Frame):
         if self.detector:
             self.detector.release()
 
+        self.landmark_history.clear()
+        self.prediction_history.clear()
         self.start_btn.config(state=tk.NORMAL)
         self.stop_btn.config(state=tk.DISABLED)
         self.status_label.config(text="Status: Stopped")
         self.camera_label.config(image="")
 
     def _process_loop(self):
-        import numpy as np
-        from PIL import Image, ImageTk
-
         frame_count = 0
         while self.is_running:
             frame = self.camera.read_frame()
@@ -192,9 +182,6 @@ class LiveTranslationFrame(tk.Frame):
 
             frame_count += 1
 
-            # Detect hands and pose (skip on some frames if configured, and
-            # reuse the last known result so recognition/sentence-building
-            # still has data to work with each loop).
             if frame_count % self.detect_every_n_frames == 0:
                 annotated_frame, hands_data, pose_data = self.detector.detect_all(frame)
                 self._last_annotated_frame = annotated_frame
@@ -205,56 +192,58 @@ class LiveTranslationFrame(tk.Frame):
                 hands_data = self._last_hands_data
                 pose_data = self._last_pose_data
 
-            # Extract features
-            features = self.feature_extractor.get_feature_vector(hands_data)
-            hand_curls = self.feature_extractor.extract_finger_curls(
-                hands_data.get('landmarks', [])
-            )
-
-            # Store landmark history for motion
             if hands_data.get('landmarks'):
                 self.landmark_history.append(hands_data['landmarks'])
                 if len(self.landmark_history) > self.max_history:
                     self.landmark_history.pop(0)
 
-            motion_features = self.feature_extractor.extract_motion_features(self.landmark_history)
+            # The online reference style is landmark-first: normalize the
+            # hand, analyze its shape, then add a short temporal signal.
+            features = self.feature_extractor.get_feature_vector(
+                hands_data, self.landmark_history
+            )
+            hand_curls = self.feature_extractor.extract_finger_curls(
+                hands_data.get('landmarks', [])
+            )
+
+            motion_features = self.feature_extractor.extract_motion_features(
+                self.landmark_history
+            )
             motion_class = self.feature_extractor.classify_motion(motion_features)
 
-            # Recognize sign
             sign, confidence, method = self.recognizer.recognize(
                 features, hand_curls, motion_class
             )
 
-            # Build sentence
+            # Five-frame majority vote removes single-frame flicker without
+            # adding a large delay to the camera.
+            if sign != "UNKNOWN":
+                self.prediction_history.append(sign)
+                counts = Counter(self.prediction_history)
+                stable_sign, stable_count = counts.most_common(1)[0]
+                if stable_count >= 3:
+                    sign = stable_sign
+                    confidence = max(confidence, 0.80)
+            else:
+                self.prediction_history.clear()
+
             is_confirmed, confirmed_sign, sentence = self.sentence_builder.add_sign(
                 sign, confidence
             )
 
-            # Update UI (every 3 frames to reduce load).
-            # IMPORTANT: this thread must never touch Tk widgets directly --
-            # Tkinter is not thread-safe. self.after(0, ...) schedules the
-            # actual widget updates to run on the main/GUI thread instead.
             if frame_count % 3 == 0:
                 self.after(0, self._update_ui, annotated_frame, sign, confidence,
                            sentence, hands_data.get('count', 0))
 
-            # No extra sleep needed -- detect_all() + self.camera.read_frame()
-            # already pace the loop to the camera/model's real throughput.
-            # A fixed sleep here only adds latency on top of that.
-
     def _update_ui(self, frame, sign, confidence, sentence, hand_count):
-        from PIL import Image, ImageTk
-
-        # Update camera feed
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         pil_image = Image.fromarray(rgb_frame)
         pil_image = pil_image.resize((480, 360), Image.Resampling.LANCZOS)
         tk_image = ImageTk.PhotoImage(pil_image)
 
         self.camera_label.config(image=tk_image)
-        self.camera_label.image = tk_image  # Keep reference
+        self.camera_label.image = tk_image
 
-        # Update sign info
         if sign != "UNKNOWN":
             self.current_sign_label.config(text=sign)
             self.confidence_label.config(
@@ -262,16 +251,14 @@ class LiveTranslationFrame(tk.Frame):
                 fg="#4ecca3" if confidence > 0.7 else "#ffa500" if confidence > 0.5 else "#ff4444"
             )
 
-            # Get meaning from database
             db = self.controller.db
             sign_data = db.get_sign_by_word(sign, self.controller.language)
             if sign_data:
                 self.meaning_text.config(state=tk.NORMAL)
                 self.meaning_text.delete(1.0, tk.END)
-                self.meaning_text.insert(tk.END, sign_data[4])  # meaning column
+                self.meaning_text.insert(tk.END, sign_data[4])
                 self.meaning_text.config(state=tk.DISABLED)
 
-                # Generate sign image card
                 try:
                     word = sign_data[1]
                     hand_pos = sign_data[5] or ""
@@ -281,25 +268,21 @@ class LiveTranslationFrame(tk.Frame):
                     img = img.resize((280, 200), Image.Resampling.LANCZOS)
                     self.current_tk_image = ImageTk.PhotoImage(img)
                     self.sign_image_label.config(image=self.current_tk_image, text="")
-                except Exception as e:
+                except Exception:
                     self.sign_image_label.config(image="", text=f"[{sign}]")
 
-            self.status_label.config(
-                text=f"Status: {hand_count} hand(s) | opencv"
-            )
+            self.status_label.config(text=f"Status: {hand_count} hand(s) | landmark recognition")
         else:
             self.current_sign_label.config(text="---")
             self.confidence_label.config(text="Confidence: 0%", fg="#a0a0a0")
             self.sign_image_label.config(image="", text="No sign detected", fg="#888888")
             self.status_label.config(text=f"Status: {hand_count} hand(s)")
 
-        # Update sentence
         self.sentence_text.config(state=tk.NORMAL)
         self.sentence_text.delete(1.0, tk.END)
         self.sentence_text.insert(tk.END, sentence)
         self.sentence_text.config(state=tk.DISABLED)
 
-        # Save to history if sentence is complete
         if sentence and len(sentence) > 0 and sign == "UNKNOWN":
             self.controller.db.add_translation(
                 "live", "camera", sentence, confidence, self.controller.language
@@ -308,6 +291,7 @@ class LiveTranslationFrame(tk.Frame):
     def _clear_sentence(self):
         if self.sentence_builder:
             self.sentence_builder.reset()
+        self.prediction_history.clear()
         self.sentence_text.config(state=tk.NORMAL)
         self.sentence_text.delete(1.0, tk.END)
         self.sentence_text.config(state=tk.DISABLED)
