@@ -231,11 +231,21 @@ class TextToSignFrame(tk.Frame):
         if not text:
             return
 
-        success, msg = self.tts.speak(text)
+        self.speak_btn.config(state=tk.DISABLED)
+        self.tts_status.config(text="Speaking...", fg="#888888")
+        self.tts.speak_async(text, callback=self._on_speak_done)
+
+    def _on_speak_done(self, success, msg):
+        # Called from a background thread -- must marshal back to the
+        # Tkinter main thread before touching any widget.
+        self.after(0, self._apply_speak_result, success, msg)
+
+    def _apply_speak_result(self, success, msg):
         if not success:
             self.tts_status.config(text=msg, fg="#ff4444")
         else:
-            self.tts_status.config(text="Spoke: " + text[:30] + "...", fg="#4ecca3")
+            self.tts_status.config(text=msg, fg="#4ecca3")
+        self.speak_btn.config(state=tk.NORMAL)
 
     def on_hide(self):
         pass
