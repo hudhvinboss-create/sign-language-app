@@ -1,6 +1,10 @@
 """
 Sign Recognition Model Interface.
 Supports loading trained ML models and includes a rule-based fallback for basic signs.
+
+The live rule layer uses a landmark-first approach inspired by lightweight
+MediaPipe sign recognizers: classify stable hand shape first, then use temporal
+motion to distinguish dynamic signs such as HELLO from static signs such as FIVE.
 """
 import os
 import pickle
@@ -33,7 +37,7 @@ class SignRecognizer:
             "TWO": {"finger_curls": [E, E, F, F], "thumb_curl": F, "description": "Index and middle extended"},
             "THREE": {"finger_curls": [E, E, E, F], "thumb_curl": F, "description": "Three fingers extended"},
             "FOUR": {"finger_curls": [E, E, E, E], "thumb_curl": F, "thumb_pos": "tucked", "description": "Four fingers extended, thumb tucked"},
-            "FIVE": {"finger_curls": [E, E, E, E], "thumb_curl": E, "thumb_pos": "side", "description": "All fingers and thumb extended"},
+            "FIVE": {"finger_curls": [E, E, E, E], "thumb_curl": (0.18, 1.5), "description": "All five digits extended"},
             "A": {"finger_curls": [F, F, F, F], "thumb_curl": E, "thumb_pos": "side", "description": "Fist with thumb out to the side"},
             "B": {"finger_curls": [E, E, E, E], "thumb_curl": F, "thumb_pos": "across", "description": "Flat hand, thumb folded across the palm"},
             "C": {"finger_curls": [C, C, C, C], "thumb_curl": C, "description": "Curved hand (partial curl on all fingers)"},
@@ -97,6 +101,12 @@ class SignRecognizer:
                 results.append(rule_result)
 
         if results:
+            # Prefer the explicit rule result for live camera signs. The rule
+            # layer knows whether a hand is static or moving, while a demo ML
+            # model may be trained on unrelated/random features.
+            rule_results = [r for r in results if r[2] == "rule-based"]
+            if rule_results:
+                return max(rule_results, key=lambda x: x[1])
             results.sort(key=lambda x: x[1], reverse=True)
             return results[0]
         return ("UNKNOWN", 0.0, "none")
@@ -108,7 +118,19 @@ class SignRecognizer:
         hand = hand_curls[0]
         curls = hand['curls']
         thumb_curl = hand['thumb_curl']
-        thumb_pos = hand['thumb_pos']
+        thumb_pos = hand.get('thumb_pos', 'unknown')
+
+        # OPEN-HAND GUARD:
+        # A real five-finger open hand and a flat B share four extended fingers,
+        # but FIVE has an extended thumb. Online landmark recognizers commonly
+        # treat the hand shape as the primary feature and motion as a separate
+        # temporal signal. Do the same here. This guard also prevents a noisy
+        # thumb_pos estimate from turning FIVE into B.
+        if (motion_class == "static"
+                and len(curls) == 4
+                and all(c >= 0.55 for c in curls)
+                and thumb_curl >= 0.18):
+            return ("FIVE", 0.98, "rule-based")
 
         candidates = []
         for sign_name, rules in self.rule_based_signs.items():
@@ -141,12 +163,8 @@ class SignRecognizer:
             return None
 
         # HELLO and THANK-YOU intentionally share the open-hand moving shape.
-        # The live pipeline currently supplies only a binary motion class, not
-        # movement direction, so the old exact-tie rule made BOTH become
-        # UNKNOWN every time the hand was correctly detected as moving.
-        # Prefer HELLO for an open-hand wave instead of throwing away the
-        # otherwise valid detection. A future direction-aware recognizer can
-        # distinguish THANK-YOU separately.
+        # The current live pipeline supplies a binary motion class, so prefer
+        # HELLO for a moving open hand rather than rejecting the valid shape.
         if motion_class == "moving":
             moving_open = [name for name, score in candidates
                            if name in ("HELLO", "THANK-YOU") and abs(score - best_score) < 1e-6]
