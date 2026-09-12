@@ -115,7 +115,7 @@ class ResourcesFrame(tk.Frame):
         )
 
         for res in self.all_resources:
-            display = f"{res[1]} ({res[5]} pages) [{res[6]}]"
+            display = f"{res[1]} ({res[6]} pages) [{res[5]}]"
             self.resources_list.insert(tk.END, display)
 
     def _on_select(self, event):
