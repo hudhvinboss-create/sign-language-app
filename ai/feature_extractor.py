@@ -21,9 +21,17 @@ class FeatureExtractor:
         features = []
         for hand in hand_landmarks[:2]:
             wrist = hand[0]
+            # Normalize by palm size as well as wrist position. This follows
+            # the common landmark-based live-recognition approach and makes
+            # the feature vector less sensitive to camera distance.
+            palm_size = _dist(hand[9], wrist) or 1e-6
             normalized = []
             for lm in hand:
-                normalized.extend([lm['x'] - wrist['x'], lm['y'] - wrist['y'], lm['z'] - wrist['z']])
+                normalized.extend([
+                    (lm['x'] - wrist['x']) / palm_size,
+                    (lm['y'] - wrist['y']) / palm_size,
+                    (lm['z'] - wrist['z']) / palm_size,
+                ])
             features.extend(normalized)
         if len(hand_landmarks) < 2:
             features.extend([0.0] * 63)
@@ -75,13 +83,19 @@ class FeatureExtractor:
         return results
 
     def classify_motion(self, motion_features):
-        """Detect subtle webcam hand movement reliably enough for waving signs."""
-        if motion_features is None or len(motion_features) == 0:
+        """Separate real waving from normal webcam landmark jitter."""
+        if motion_features is None or len(motion_features) < 3:
             return "static"
+
         mean_velocity = float(motion_features[0])
-        # 0.02 was too strict for normal webcam waving. Small real movements
-        # often land around 0.005-0.02 after landmark normalization.
-        return "moving" if mean_velocity > 0.005 else "static"
+        max_velocity = float(motion_features[2])
+
+        # A very low threshold makes a perfectly still FIVE look like HELLO
+        # because MediaPipe landmarks naturally jitter by a few pixels.
+        # Require both sustained movement and a meaningful movement peak.
+        # This keeps static open-hand signs static while still allowing a
+        # deliberate wave to become moving.
+        return "moving" if mean_velocity > 0.010 and max_velocity > 0.025 else "static"
 
     def extract_motion_features(self, landmark_history):
         if len(landmark_history) < 2:
